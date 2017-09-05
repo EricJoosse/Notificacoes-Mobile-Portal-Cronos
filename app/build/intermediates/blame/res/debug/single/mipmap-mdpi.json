@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\logo.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\src\\main\\res\\mipmap-mdpi\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher_round.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\background.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\src\\main\\res\\mipmap-mdpi\\background.png"
+    }
+]

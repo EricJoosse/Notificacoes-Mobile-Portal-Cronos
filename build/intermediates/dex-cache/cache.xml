@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\eff323b88e52c725180729d8108655f42377c92c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_d7d817a255bd686b10003aefd06987d2692d1e4f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.4\5fe28b9518e58819180a43a850fbc0dd24b7c050\commons-lang3-3.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5fe28b9518e58819180a43a850fbc0dd24b7c050">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\commons-lang3-3.4_9185b5e88b298f57785ee304cb8ed53688b6330c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_6e6d957346b5c763b84386d9eb6f8e405391aed9\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\7325fa9a5c6514a10b9c46247b9c895f5f07af7c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_8901bea1f8bc766c3a8d7ef21a8c7d6febd8e69e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\e586e70b9e3384fffb3bd3742e026f11ba2a10ad\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_eb928ca9c5654889b9a57beb171c180f893ef26d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\ffe4f085bf7a2fbef610bd2b35ec85abeef8cdfd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_02cb9f77b6e71cb546ff67385dd1bb9dd81b8e23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\5241625547da4f965f0e6b67efc781e756c9838e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_2c8ce6f0387ddf1f686f545d312c95cdf53c5252.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\290c3a3371a63c803107052e1fb8e53353a5dba0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_5758cddfca82c3319c6327caf6468e18045e2800.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\0ec7b7defc97797f1ff05e10433576bb0c8ac885\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_30c97b8e1d65700cb5b46a3f5a63deb32729db52.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\d000c60007194541072d7aa9919054973ab189ef\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_f57e35c036a03cb20126d41396c84641a0433494.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\2594fece93e5721ab386f6a80c16c28fadb4af98\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_fe2281413f263066adafefd93e34fd931495380f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\support-annotations-25.2.0_5fe2fcb570dc7a0020e070ad435284454c29488b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\97e688eefa6fd6fa9c116ee77b89e92a4d23b44e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_9fc7046b80070905ebcca2dacb4a90fcfe45230b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\6b51b98f0e759c8d35880205f52565469fde7aab\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5ffe8867f51cfc726e9fb21db1e5b6962ebf25a0">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_3df8de3c12540578a6bf752b40a57f3c74e9d362.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\3825a027617a0b64af94a977b2bb33b3da8c80e2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_623f9df32cfb8caa067a00de015a446239927737.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="629915f184b2c34d5b3d5ac67a909921e0f6192f">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_365c13b9c26358aabc244905478f39853e4cf20c\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\19499c7483d6b511688a09c69be4e8c11d9db7e4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_5c0e868dd54aad4c763a422e0f3e96341da0f610.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\7593168ea7b4eca85aa7d073f9da9ee608513fdc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="190a642ba16d1421296a4d794606279b80039c59">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_a5f160cf9499cda1c6a64d72bc1d8813b6ec090f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\c2c9b0fc902146d5bcccd9b9e2db69c315287924\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ff04cc3470178a44512624036751a803418c2ca">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_be12883461320e859aedbb512687204ba57bb034.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\0431e7dfc3550c0619b3ab92e2a1dff3de6e7e0a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_22eab4f2faa8bcb40c9de16760b32d14b8b60f70.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\glide-3.7.0_2831b577934fee3b81bbb933e9bf397ab6dfb430.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\4fe836a1755a29554469b8dd21f0c3ddc941a6ac\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e51c2f662bb72419632af5192553c37e33890a99">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_d3554e232c924d62854409ab9a3f44d7b94d1034.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\5cd61ab058d0a3e71113b327a1ebc9a507fa92e7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_2b180e11ab95f0df4c40c09f87fc9857336e1d49.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_4ba62ddc531e9153e3b57b92ea53c3725ea427d0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\247d14e699b99d8867cc64c7b17a839a7fc5f0fe\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_daeb1e3fdada18935b39c3098eee3ae75ad47c2c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mario.viegas\.android\build-cache\2df5f78391e0860e6a23097430bbf8ad73f6522d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="C:\Users\mario.viegas\Documents\Android_workspace\Cronos\app\build\intermediates\pre-dexed\debug\classes_10f629d154bab3e10e013829067e164015b5cce2.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "718196078856",
+    "firebase_url": "https://cronos-4401d.firebaseio.com",
+    "project_id": "cronos-4401d",
+    "storage_bucket": "cronos-4401d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718196078856:android:63c33847b767395f",
+        "android_client_info": {
+          "package_name": "pt.truewind.cronostest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718196078856-553h1iohb7v00jn8phvtouhgvhg58ms4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByhPZjBjjq5i2t0JG9zS76vNbuGg6sJzc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

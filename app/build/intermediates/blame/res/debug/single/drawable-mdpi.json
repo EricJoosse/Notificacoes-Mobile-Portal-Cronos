@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_person.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\src\\main\\res\\drawable-mdpi\\ic_person.png"
+    },
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_lock.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\src\\main\\res\\drawable-mdpi\\ic_lock.png"
+    },
+    {
+        "merged": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\rectangle.png",
+        "source": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\rectangle.png"
+    }
+]

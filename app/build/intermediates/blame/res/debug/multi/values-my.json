@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "C:\\Users\\mario.viegas\\Documents\\Android_workspace\\Cronos\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-my\\values-my.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endColumn": 212,
+                    "endOffset": 313
+                },
+                "from": {
+                    "file": "C:\\Users\\mario.viegas\\.android\\build-cache\\290c3a3371a63c803107052e1fb8e53353a5dba0\\output\\res\\values-my\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 0,
+                        "startOffset": 285,
+                        "endColumn": 212,
+                        "endOffset": 497
+                    }
+                }
+            }
+        ]
+    }
+]

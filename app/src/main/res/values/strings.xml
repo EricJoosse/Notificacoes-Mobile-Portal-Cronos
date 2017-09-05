@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">CronosTest</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="enter">Entrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="user">Usuário</string>
+    <string name="password">Senha</string>
+    <string name="provisional_password">Senha Provisória</string>
+    <string name="invalid_password">Login ou Senha inválidos</string>
+    <string name="blocked_user">Seu usuário foi bloqueado e uma nova senha provisória foi enviada para seu e-mail!</string>
+    <string name="new_password">Nova Senha</string>
+    <string name="confirm_password">Confirma Senha</string>
+    <string name="ok">Ok</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="confirm">Confirmar</string>
+    <string name="senha_provisoria">Se esqueceu a senha, clique em "Confirmar" para gerar uma nova senha provisória</string>
+    <string name="password_to_email">Senha provisória atribuída e enviada para seu e-mail, com sucesso!</string>
+    <string name="error_provisional">Envio da senha provisória deu erro!</string>
+    <string name="certeza_provisoria">Tem a certeza que deseja atribuir uma nova senha provisória?</string>
+    <string name="fill_new_password">Informe a nova senha</string>
+    <string name="password_6_digits">A nova senha precisa conter no mínimo 6 dígitos</string>
+    <string name="diferent_passwords">A confirmação da senha diverge da nova senha informada</string>
+    <string name="fill_login_fields">Login não informado;\nSenha não informada;</string>
+    <string name="fill_username">Login não informado;</string>
+    <string name="fill_password">Senha não informada;</string>
+    <string name="login_text">A sua plataforma eletrônica de negócios</string>
+    <string name="forgot_password"><u>Esqueci a senha</u></string>
+    <string name="login_failed">Autenticação inválida</string>
+    <string name="login_failed_message">Tente novamente mais tarde</string>
+    <string name="authenticating">Autenticando</string>
+    <string name="login_ok">Login OK</string>
+    <string name="no_internet_connection">Ligação à internet não detetada</string>
+    <string name="please_check_internet">Para continuar é favor ligar o pacote de dados.</string>
+    <string name="not_synced">Dados não sincronizados.</string>
+    <string name="ended">Finalizada</string>
+    <string name="undo">Desfazer</string>
+    <string name="exit">Sair</string>
+
+</resources>

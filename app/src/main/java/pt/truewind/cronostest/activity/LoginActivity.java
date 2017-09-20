@@ -271,6 +271,12 @@ public class LoginActivity extends AppCompatActivity {
                                     showError(getString(R.string.login_failed), getString(R.string.blocked_user));
                                     onRestart();
                                 }
+                                else if ( configuration != null &&
+                                        configuration.getValue().equals(Integer.toString(Constants.BLOCKED_PERFIL)) ) {
+
+                                    showError(getString(R.string.login_failed), getString(R.string.blocked_perfil));
+                                    onRestart();
+                                }
                                 else {
                                     showError(getString(R.string.login_failed), getString(R.string.invalid_password));
                                 }

@@ -8,6 +8,7 @@
     <string name="provisional_password">Senha Provisória</string>
     <string name="invalid_password">Login ou Senha inválidos</string>
     <string name="blocked_user">Seu usuário foi bloqueado e uma nova senha provisória foi enviada para seu e-mail!</string>
+    <string name="blocked_perfil">Acesso negado! No momento o aplicativo para celular só disponibiliza funções para perfis vinculados à empresas fornecedoras!</string>
     <string name="new_password">Nova Senha</string>
     <string name="confirm_password">Confirma Senha</string>
     <string name="ok">Ok</string>

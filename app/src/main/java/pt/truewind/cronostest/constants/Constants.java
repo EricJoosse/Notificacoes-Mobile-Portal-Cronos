@@ -27,6 +27,7 @@ public class Constants {
 
     //AUTOLOGIN
     public static final String AUTO_LOGIN_KEY = "autologin";
+    public static final int BLOCKED_PERFIL = 5;
     public static final int BLOCKED_USER = 4;
     public static final int PROVISIONAL_PASSWORD = 3;
     public static final int NEW_PASSWORD = 2;

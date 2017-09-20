@@ -71,7 +71,16 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
             response = service.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
             Logger.e("Response Code: " + response);
 
-            if(response.equals(Constants.LOGIN_OK)){
+            if (response.contains("No momento o aplicativo para celular")) {
+                status = false;
+                ConfigurationService configurationService = new ConfigurationService();
+                String value = Integer.toString(Constants.BLOCKED_PERFIL);
+                Configuration configuration = new Configuration(Constants.AUTO_LOGIN_KEY, value);
+                configurationService.insert(configuration);
+                Logger.d(new ConfigurationService().findAll().toString() + " dentro do CronosPortalAuthAsyncTask");
+                return false;
+            }
+            else if(response.equals(Constants.LOGIN_OK)){
 
                 RemoteAbstractService serviceCot = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.COT_ACCESS);
                 Logger.d(BuildConfig.ENDPOINT + Constants.COT_ACCESS);

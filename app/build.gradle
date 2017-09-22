@@ -16,13 +16,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "int", "LOGGER_LEVEL", "3"
-            buildConfigField "String", "ENDPOINT", '\"http://52.170.47.238:81\"'
+            buildConfigField "String", "ENDPOINT", '\"http://52.170.47.238:80\"'
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             buildConfigField "int", "LOGGER_LEVEL", "0"
-            buildConfigField "String", "ENDPOINT", '\"http://52.170.47.238:81\"'
+            buildConfigField "String", "ENDPOINT", '\"http://52.170.47.238:80\"'
         }
     }
 }

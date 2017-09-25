@@ -14,7 +14,7 @@ public class Constants {
     public static final String CONTENT_TYPE_APP_JSON = "application/json";
     public static final String LOGIN_ACCESS = "/v2/ControloAcesso/DoLogin";
     //public static final String PRINCIPAL_ENDPOINT = "/principal.aspx#";
-    public static final String PRINCIPAL_ENDPOINT = "/v2/#cotacao/consulta";
+    public static final String PRINCIPAL_ENDPOINT = "/v2/#cotacao/consulta?activeTab=2";
     public static final String TOKEN_ACCESS = "/v2/ControloAcesso/GetTokenDeviceid";
     public static final String LOGOUT = "/v2/ControloAcesso/Login";
     public static final String LOGIN_OK = "{\"Login\":\"OK\"}";

@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (endpoint.getUsername() != null && endpoint.getPassword() != null) {
                         setSharedPreferences(endpoint.getUsername(), endpoint.getPassword());
-                        //// TODO: 12/05/2017  se null, auto login disabled e preencher login.
+                        //// TODO: 12/05/2017  se null, auto login disabled e preencher login. - 03/10/2017: já estava resolvido antes do upload inicial no GitHub, segundo Mário Viegas
                     }
 
                     this.server = BuildConfig.ENDPOINT + Constants.LOGIN_ACCESS;
@@ -184,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                     Logger.e("Username do loggedUser é "+ this.loggedUser.getUsername());
                     Logger.e("Password do loggedUser é "+ this.loggedUser.getPassword());
 
-                    //TODO melhorar/optimizar
+                    //TODO melhorar/optimizar - 03/10/2017: já estava resolvido antes do upload inicial no GitHub, segundo Mário Viegas
 
                     final String user = this.loggedUser.getUsername();
                     final String pass = this.loggedUser.getPassword();

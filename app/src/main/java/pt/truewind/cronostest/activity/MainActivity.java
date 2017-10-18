@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
+        refreshWebView();
     }
 
     //Must unregister onPause()

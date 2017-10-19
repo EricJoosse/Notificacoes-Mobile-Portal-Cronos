@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Extract data included in the Intent
             String message = intent.getStringExtra("message");
-            showNotification("Notification", message);
+            showNotification("", message);
             refreshWebView();
 
             //do other stuff here

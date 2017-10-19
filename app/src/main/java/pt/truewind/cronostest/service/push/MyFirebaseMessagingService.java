@@ -32,6 +32,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         //put whatever data you want to send, if any
         intent.putExtra("message", message);
+     // intent.putExtra("Title", "Portal Cronos");  .....Testado que isso não funciona, não tem efeito nem na notificação externa nem na notificação interna
 
         //send broadcast
         context.sendBroadcast(intent);

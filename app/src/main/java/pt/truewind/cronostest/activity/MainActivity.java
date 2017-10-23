@@ -97,8 +97,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
+        int qtdNotificacoesExternasNaoLidas = 0;
+
+        try {
+            android.app.NotificationManager mNotificationManager =
+                    (android.app.NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            qtdNotificacoesExternasNaoLidas = mNotificationManager.getActiveNotifications().length;
+        }
+        catch (Exception ex) {
+            // Não fazer nada. No caso de Android < 6.0 vai dar erro pois getActiveNotifications() não existe
+        }
+
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
-        refreshWebView();
+
+        if (qtdNotificacoesExternasNaoLidas > 0)
+            refreshWebView();
     }
 
     //Must unregister onPause()

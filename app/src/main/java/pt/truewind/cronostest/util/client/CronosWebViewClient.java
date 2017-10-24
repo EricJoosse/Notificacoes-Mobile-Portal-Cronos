@@ -13,6 +13,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.webkit.ClientCertRequest;
 import android.webkit.HttpAuthHandler;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import android.widget.ProgressBar;
 
 import pt.truewind.cronostest.BuildConfig;
 import pt.truewind.cronostest.activity.MainActivity;
+import pt.truewind.cronostest.activity.LoginActivity;
 import pt.truewind.cronostest.constants.Constants;
 import pt.truewind.cronostest.log.Logger;
 import pt.truewind.cronostest.model.Configuration;
@@ -36,6 +39,15 @@ public class CronosWebViewClient extends WebViewClient {
     private Context context;
     private String logoutURL;
     private ImageView loading;
+
+    @Override
+    public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+        LoginActivity telaLogin = new LoginActivity();
+        telaLogin.showError("Queda da Autenticação", "Favor digitar seu usuário/senha novamente.");
+        telaLogin.showLogin();
+    }
+
+
 
     @Override
     public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {

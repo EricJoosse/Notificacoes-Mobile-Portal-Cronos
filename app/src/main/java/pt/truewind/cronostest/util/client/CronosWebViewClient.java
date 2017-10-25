@@ -41,10 +41,13 @@ public class CronosWebViewClient extends WebViewClient {
     private ImageView loading;
 
     @Override
+    @TargetApi(21)
     public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-        LoginActivity telaLogin = new LoginActivity();
-        telaLogin.showError("Queda da Autenticação", "Favor digitar seu usuário/senha novamente.");
-        telaLogin.showLogin();
+        if (errorResponse.getStatusCode() == 401 || errorResponse.getStatusCode() == 403) {
+            LoginActivity telaLogin = new LoginActivity();
+            telaLogin.showError("Queda da Autenticação", "Favor digitar seu usuário/senha novamente.");
+            telaLogin.showLogin();
+        }
     }
 
 

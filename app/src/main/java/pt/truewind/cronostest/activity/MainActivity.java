@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -40,6 +41,21 @@ public class MainActivity extends AppCompatActivity {
 
         this.webview = (WebView) findViewById(R.id.webView);
         this.webview.getSettings().setJavaScriptEnabled(true);
+
+        // Testado que no Android 7.0 o APK fica um pouquinho mais rápido se desabilitar hardware acceleration,
+        // então o seguinte foi feito no AndroidManifest.xml para TODAS as versões de Android:
+//      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//          // chromium, enable hardware acceleration
+//          this.webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+//      } else {
+//          // older android version, disable hardware acceleration
+//          this.webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+//      }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2)
+            this.webview.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+
+        this.webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         this.webview.setFocusable(true);
 
         this.loading = (ImageView) findViewById(R.id.loading);

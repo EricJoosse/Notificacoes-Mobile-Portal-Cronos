@@ -101,13 +101,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(webview.canGoBack()){
-            webview.goBack();
-        }
-        else {
-            finishAffinity();
-        }
+        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site:
+//        if(webview.canGoBack()){
+//            webview.goBack();
+//        }
+//        else {
+//            finishAffinity();
+//        }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site:
+        return (keyCode == KeyEvent.KEYCODE_BACK ? true : super.onKeyDown(keyCode, event));
+    }
+
 
     //register your activity onResume()
     @Override

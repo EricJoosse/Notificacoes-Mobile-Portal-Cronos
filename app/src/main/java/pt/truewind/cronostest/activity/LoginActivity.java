@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,6 +50,20 @@ public class LoginActivity extends AppCompatActivity {
     private String server;
 
     private User loggedUser;
+
+    @Override
+    public void onBackPressed() {
+
+        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site:
+        return (keyCode == KeyEvent.KEYCODE_BACK ? true : super.onKeyDown(keyCode, event));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

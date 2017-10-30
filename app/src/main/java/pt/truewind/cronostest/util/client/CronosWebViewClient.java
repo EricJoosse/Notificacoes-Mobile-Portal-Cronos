@@ -19,6 +19,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import pt.truewind.cronostest.BuildConfig;
 import pt.truewind.cronostest.activity.MainActivity;
@@ -28,6 +29,7 @@ import pt.truewind.cronostest.log.Logger;
 import pt.truewind.cronostest.model.Configuration;
 import pt.truewind.cronostest.service.local.ConfigurationService;
 import pt.truewind.cronostest.util.CronosUtil;
+import pt.truewind.cronostest.util.system.SystemUtil;
 
 /**
  * Created by vasco.caetano on 02/11/2016.
@@ -50,6 +52,17 @@ public class CronosWebViewClient extends WebViewClient {
         }
     }
 
+    @TargetApi(23)
+    @Override
+    public void onReceivedError(WebView view, WebResourceRequest request, android.webkit.WebResourceError error) {
+        if (error.getErrorCode() == ERROR_TIMEOUT) {
+            view.stopLoading();  // may not be needed
+            Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
+            // view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
+            LoginActivity telaLogin = new LoginActivity();
+            telaLogin.showLogin();
+        }
+    }
 
 
     @Override
@@ -78,25 +91,43 @@ public class CronosWebViewClient extends WebViewClient {
         loading.setVisibility(View.GONE);
     }
 
+//    @Override
+//    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//
+//        if (url.contains("http://exitme")){
+//            CronosUtil.doLogout();
+//
+//            ((Activity) this.context).finish();
+//            return true;
+//        }
+//
+//        Logger.d(url);
+//        if( url.startsWith("http:") || url.startsWith("https:") ) {
+//            return false;
+//        }
+//        // Otherwise allow the OS to handle things like tel, mailto, etc.
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//        context.startActivity(intent);
+//        return true;
+//    }
+
     @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-        if (url.contains("http://exitme")){
-            CronosUtil.doLogout();
-
-            ((Activity) this.context).finish();
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        if (SystemUtil.isOnline(this.context)) {
+            // return false to let the WebView handle the URL
+            return false;
+        } else {
+            // show the proper "not connected" message
+            Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
+            //  view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
+            LoginActivity telaLogin = new LoginActivity();
+            telaLogin.showLogin();
+            // return true if the host application wants to leave the current
+            // WebView and handle the url itself
             return true;
         }
-
-        Logger.d(url);
-        if( url.startsWith("http:") || url.startsWith("https:") ) {
-            return false;
-        }
-        // Otherwise allow the OS to handle things like tel, mailto, etc.
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        context.startActivity(intent);
-        return true;
     }
+
 
     public void setUsername(String username){
         this.username = username;

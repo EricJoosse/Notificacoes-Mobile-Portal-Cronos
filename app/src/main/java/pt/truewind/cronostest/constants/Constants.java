@@ -16,14 +16,16 @@ public class Constants {
     //public static final String PRINCIPAL_ENDPOINT = "/principal.aspx#";
     public static final String PRINCIPAL_ENDPOINT = "/v2/#cotacao/consulta?activeTab=2";
     public static final String TOKEN_ACCESS = "/v2/ControloAcesso/GetTokenDeviceid";
+    public static final String LOG_REMOTO = "/v2/ControloAcesso/LogMobile";
     public static final String LOGOUT = "/v2/ControloAcesso/Login";
     public static final String LOGIN_OK = "{\"Login\":\"OK\"}";
-    public static final  String CHANGE_PASSWORD_OK = "{\"Login\": \"Senha alterada com sucesso!\"}";
+    public static final String CHANGE_PASSWORD_OK = "{\"Login\": \"Senha alterada com sucesso!\"}";
     public static final String NEW_PASSWORD_OK = "\"Senha\":null,\"NovaSenha\":null,\"ConfirmaSenha\":null";
-    public static String COT_ACCESS = "/v2/ControloAcesso/ValidaFornecedorPerm";
-    public static String SENHA_PROVISORIA = "/v2/ControloAcesso/SenhaProvisoria";
-    public static String SENHA_DEFINITIVA = "/v2/ControloAcesso/SenhaDefinitiva";
+    public static       String COT_ACCESS = "/v2/ControloAcesso/ValidaFornecedorPerm";
+    public static       String SENHA_PROVISORIA = "/v2/ControloAcesso/SenhaProvisoria";
+    public static       String SENHA_DEFINITIVA = "/v2/ControloAcesso/SenhaDefinitiva";
 
+    public static       boolean toGerarArquivoDebug;
 
     //AUTOLOGIN
     public static final String AUTO_LOGIN_KEY = "autologin";
@@ -34,4 +36,10 @@ public class Constants {
     public static final int AUTO_LOGIN_ENABLED = 1;
     public static final int AUTO_LOGIN_DISABLED = 0;
 
+    static {
+        if (pt.truewind.cronostest.BuildConfig.BUILD_TYPE.equals("debug"))
+            toGerarArquivoDebug = true;
+        else
+            toGerarArquivoDebug = false;
+    }
 }

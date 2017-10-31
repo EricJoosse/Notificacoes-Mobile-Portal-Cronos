@@ -8,6 +8,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import pt.truewind.cronostest.BuildConfig;
 import pt.truewind.cronostest.constants.Constants;
+import pt.truewind.cronostest.util.CronosUtil;
 
 public class Logger {
 
@@ -29,6 +30,7 @@ public class Logger {
 
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
+            CronosUtil.logarRemotamente(msg);
         }
     }
 
@@ -36,6 +38,7 @@ public class Logger {
 
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
+            CronosUtil.logarRemotamente(msg);
         }
     }
 

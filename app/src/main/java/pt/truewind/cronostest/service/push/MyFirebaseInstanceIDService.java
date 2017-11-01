@@ -16,6 +16,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     @Override
     public void onTokenRefresh() {
+        Logger.d("MyFirebaseInstanceIDService: onTokenRefresh() entrado.");
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Logger.d("Refreshed token: " + refreshedToken);
@@ -30,5 +31,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
         //sendRegistrationToServer(refreshedToken);
+        Logger.d("MyFirebaseInstanceIDService: onTokenRefresh() finalizado.");
     }
 }

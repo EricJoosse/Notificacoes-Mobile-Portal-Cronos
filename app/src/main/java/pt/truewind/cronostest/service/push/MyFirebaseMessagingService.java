@@ -14,15 +14,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(com.google.firebase.messaging.RemoteMessage remoteMessage) {
-        Logger.e("MessageReceived");
+        Logger.d("MyFirebaseMessagingService: onMessageReceived() entrado.");
         if(remoteMessage.getNotification() != null){
             String notification = remoteMessage.getNotification().getBody().toString();
-            Logger.e("Notification - " + notification);
+            Logger.d("MyFirebaseMessagingService: Notification = " + notification);
             updateMyActivity(this, notification);
         }
         if(!remoteMessage.getData().toString().equals("{}")) {
-            Logger.e("Message - " + remoteMessage.getData().toString());
+            Logger.d("MyFirebaseMessagingService: remoteMessage.getData().toString() = " + remoteMessage.getData().toString());
         }
+        Logger.d("MyFirebaseMessagingService: onMessageReceived() finalizado.");
     }
 
     // This function will create an intent. This intent must take as parameter the "unique_name" that you registered your activity with

@@ -60,7 +60,7 @@ public class DefinitivePasswordAsyncTask extends AbstractAsyncTask {
         try {
             RemoteAbstractService service = new RemoteAbstractService(this.url);
             response = service.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-            Logger.e("Response Code da Senha Definitiva: " + response);
+            Logger.d("Response Code da Senha Definitiva: " + response);
 
             if(response.contains("sucesso")){
                 status = true;

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.d("MainActivity: onCreate() entrado.");
         setContentView(R.layout.activity_main);
 
         SharedPreferences userDetails = this.getSharedPreferences("user", MODE_PRIVATE);
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         refreshWebView();
+        Logger.d("MainActivity: onCreate() finalizado.");
     }
 
     @Override
@@ -123,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        Logger.d("MainActivity: onResume() entrado.");
+
         int qtdNotificacoesExternasNaoLidas = 0;
 
         try {
@@ -130,22 +134,28 @@ public class MainActivity extends AppCompatActivity {
                     (android.app.NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
             qtdNotificacoesExternasNaoLidas = mNotificationManager.getActiveNotifications().length;
+            Logger.d("MainActivity: onResume(): qtdNotificacoesExternasNaoLidas = " + qtdNotificacoesExternasNaoLidas);
         }
         catch (Exception ex) {
             // Não fazer nada. No caso de Android < 6.0 vai dar erro pois getActiveNotifications() não existe
+            Logger.d("MainActivity: onResume() - catch entrado: ex.getMessage() = " + ex.getMessage());
         }
 
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
 
-        if (qtdNotificacoesExternasNaoLidas > 0)
+     // if (qtdNotificacoesExternasNaoLidas > 0)
             refreshWebView();
+
+        Logger.d("MainActivity: onResume() finalizado.");
     }
 
     //Must unregister onPause()
     @Override
     protected void onPause() {
         super.onPause();
+        Logger.d("MainActivity: onPause() entrado.");
         this.unregisterReceiver(mMessageReceiver);
+        Logger.d("MainActivity: onPause() finalizado.");
     }
 
 
@@ -153,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Logger.d("MainActivity: onReceive() entrado.");
 
             // Extract data included in the Intent
             String message = intent.getStringExtra("message");
@@ -160,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
             refreshWebView();
 
             //do other stuff here
+            Logger.d("MainActivity: onReceive() finalizado.");
         }
     };
 
@@ -168,10 +180,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void showNotification(String title, String message ){
         new AlertPopupDialog(this, title, message).show();
+        Logger.d("MainActivity: showNotification(): message = " + message);
     }
 
     public void refreshWebView(){
+        Logger.d("MainActivity: refreshWebView() entrado.");
         this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.PRINCIPAL_ENDPOINT);
+        Logger.d("MainActivity: refreshWebView() finalizado.");
     }
 
 }

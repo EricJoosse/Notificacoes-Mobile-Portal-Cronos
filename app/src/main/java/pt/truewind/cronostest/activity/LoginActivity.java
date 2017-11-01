@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.d("LoginActivity: onCreate entrado.");
         setContentView(R.layout.activity_login);
         SystemUtil.loadDatabase(this);
         MultiThreadDbHelper.INSTANCE.getDbHelper().open();
@@ -160,13 +161,14 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         }
+        Logger.d("LoginActivity: onCreate finalizado.");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+        Logger.d("LoginActivity: onRestart() entrado");
         showLogin();
-        Logger.e("onRestart()");
         password.setText("");
 
         ConfigurationService configurationService = new ConfigurationService();
@@ -214,6 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }
+        Logger.d("LoginActivity: onRestart() finalizado");
     }
 
     /**
@@ -224,6 +227,8 @@ public class LoginActivity extends AppCompatActivity {
      * @return result from login
      */
     private void login(final String username, String password){
+
+        Logger.d("LoginActivity: login() entrado");
 
         if (!SystemUtil.isOnline(this)){
             Logger.d("No internet connection!");
@@ -302,6 +307,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
             ).execute();
         }
+        Logger.d("LoginActivity: login() finalizado");
     }
 
     /**
@@ -312,6 +318,7 @@ public class LoginActivity extends AppCompatActivity {
      * @return result from login
      */
     private void provisionalLogin(final String username, String password){
+        Logger.d("LoginActivity: provisionalLogin() entrado");
 
         if (!SystemUtil.isOnline(this)){
             Logger.d("No internet connection!");
@@ -352,9 +359,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
             ).execute();
         }
+        Logger.d("LoginActivity: provisionalLogin() finalizado");
     }
 
     private void setDefinitivePassword(final String username, String password, String newPassword, String confirmPassword){
+        Logger.d("LoginActivity: setDefinitivePassword() entrado");
+
         if (!SystemUtil.isOnline(this)){
             Logger.d("No internet connection!");
             showError(getString(R.string.login_failed), getString(R.string.no_internet_connection));
@@ -416,9 +426,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
             ).execute();
         }
+        Logger.d("LoginActivity: setDefinitivePassword() finalizado");
     }
 
     private void setProvisionalPassword(String username, String password){
+        Logger.d("LoginActivity: setProvisionalPassword() entrado");
 
         if (!SystemUtil.isOnline(this)){
             Logger.d("No internet connection!");
@@ -447,14 +459,19 @@ public class LoginActivity extends AppCompatActivity {
                     }
             ).execute();
         }
+        Logger.d("LoginActivity: setProvisionalPassword() finalizado");
     }
 
     /**
      * Starts the home activity
      */
     private void startMainActivity(){
+        Logger.d("LoginActivity: startMainActivity() entrado");
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+        Logger.d("LoginActivity: startMainActivity() finalizado");
     }
 
     /**
@@ -463,12 +480,15 @@ public class LoginActivity extends AppCompatActivity {
      * @param password
      */
     private void setSharedPreferences(String username, String password){
+        Logger.d("LoginActivity: setSharedPreferences() entrado");
 
         SharedPreferences userDetails = this.getSharedPreferences("user", MODE_PRIVATE);
         SharedPreferences.Editor editor = userDetails.edit();
         editor.putString("username", username);
         editor.putString("password", password);
         editor.apply();
+
+        Logger.d("LoginActivity: setSharedPreferences() finalizado");
     }
 
     /**
@@ -476,16 +496,20 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void showError(String title, String message ){
         new AlertPopupDialog(this, title, message).show();
+        Logger.d("LoginActivity: showError(): message = " + message);
     }
 
     public void showNotification(String title, String message ){
         new AlertPopupDialog(this, title, message).show();
+        Logger.d("LoginActivity: showNotification(): message = " + message);
     }
 
     /**
      * Asks for new Password
      */
     public void askForNewPassword(final String username, String title, String message, final Activity activity){
+        Logger.d("LoginActivity: askForNewPassword() entrado");
+
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
             @Override
@@ -513,12 +537,16 @@ public class LoginActivity extends AppCompatActivity {
 
         AlertDialog popup = builder.create();
         popup.show();
+
+        Logger.d("LoginActivity: askForNewPassword() finalizado");
     }
 
     /**
      * new Password for sure?
      */
     public void newPasswordforSure(final String username, String title, String message, final Activity activity){
+        Logger.d("LoginActivity: newPasswordforSure() entrado");
+
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
             @Override
@@ -543,6 +571,8 @@ public class LoginActivity extends AppCompatActivity {
 
         AlertDialog popup = builder.create();
         popup.show();
+
+        Logger.d("LoginActivity: newPasswordforSure() finalizado");
     }
 
     public void showProgressBar(){

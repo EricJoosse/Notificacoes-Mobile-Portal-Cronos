@@ -14,7 +14,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(com.google.firebase.messaging.RemoteMessage remoteMessage) {
-        Logger.d("MyFirebaseMessagingService: onMessageReceived() entrado.");
+        // Por enquanto não enviar para o arquivo de LOG remoto no site antes da autenticação:
+        if (remoteMessage.getData() == null || remoteMessage.getData().size() == 0)
+            Logger.d("MyFirebaseMessagingService: onMessageReceived() entrado.");
+
         if(remoteMessage.getNotification() != null){
             String notification = remoteMessage.getNotification().getBody().toString();
             Logger.d("MyFirebaseMessagingService: Notification = " + notification);
@@ -23,7 +26,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if(!remoteMessage.getData().toString().equals("{}")) {
             Logger.d("MyFirebaseMessagingService: remoteMessage.getData().toString() = " + remoteMessage.getData().toString());
         }
-        Logger.d("MyFirebaseMessagingService: onMessageReceived() finalizado.");
+
+        if (remoteMessage.getData() == null || remoteMessage.getData().size() == 0)
+            Logger.d("MyFirebaseMessagingService: onMessageReceived() finalizado.");
     }
 
     // This function will create an intent. This intent must take as parameter the "unique_name" that you registered your activity with

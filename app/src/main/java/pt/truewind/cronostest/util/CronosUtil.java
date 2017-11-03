@@ -34,7 +34,7 @@ public class CronosUtil {
         configurationService.insert(configuration);
     }
 
-    public static void logarRemotamente(String mensagem) {
+    public static void logarRemotamente(String mensagem, boolean toLogarApenasCartaoMemoria) {
         if (Constants.toGerarArquivoDebug) {
             boolean temCartaoMemoria = false;
 
@@ -62,31 +62,38 @@ public class CronosUtil {
             }
 
 
+            if (!toLogarApenasCartaoMemoria && (    mensagem.indexOf("MainActivity") > -1
+                                                 || mensagem.indexOf("CronosWebViewClient") > -1
+                                                 || mensagem.indexOf("MyFirebaseMessagingService") > -1
+                                               )
+               ) {
+                try {
+                    Integer id = 0;
+                    EndpointService endpointService = new EndpointService();
+                    Endpoint endpoint = endpointService.findEndpointById(id);
 
-            try {
-                Integer id = 0;
-                EndpointService endpointService = new EndpointService();
-                Endpoint endpoint = endpointService.findEndpointById(id);
+                    if (endpoint != null && endpoint.getUsername() != null && endpoint.getToken() != null && mensagem != null) {
+                        JSONObject tokenJSON = new JSONObject();
+                        tokenJSON.put("userName", endpoint.getUsername());
+                        tokenJSON.put("versaoAndroid", Integer.toString(Build.VERSION.SDK_INT));
+                        tokenJSON.put("modeloMobile", Build.BRAND + "." + Build.MODEL);
+                        tokenJSON.put("tokenId", endpoint.getToken());
+                        tokenJSON.put("linhaArqLog", mensagem);
+                        //this.server = "http://10.123.175.136:8080/username/users";
+                        String url = BuildConfig.ENDPOINT + Constants.LOG_REMOTO;
 
-                JSONObject tokenJSON = new JSONObject();
-                tokenJSON.put("userName", endpoint.getUsername());
-                tokenJSON.put("versaoAndroid", Integer.toString(Build.VERSION.SDK_INT));
-                tokenJSON.put("modeloMobile", Build.BRAND + "." + Build.MODEL);
-                tokenJSON.put("tokenId", endpoint.getToken());
-                tokenJSON.put("linhaArqLog", mensagem);
-                //this.server = "http://10.123.175.136:8080/username/users";
-                String url = BuildConfig.ENDPOINT + Constants.LOG_REMOTO;
+                        String response = "";
 
-                String response = "";
+                        RemoteAbstractService service = new RemoteAbstractService(url);
 
-                RemoteAbstractService service = new RemoteAbstractService(url);
-
-                response = service.performPostCall(tokenJSON.toString(), Constants.CONTENT_TYPE_APP_JSON, Constants.POST);
-            }
-            catch (JSONException e) {
-                // Logger.e("Can´t format JSON");
-            }
-            catch (Exception e) {
+                        response = service.performPostCall(tokenJSON.toString(), Constants.CONTENT_TYPE_APP_JSON, Constants.POST);
+                    }
+                }
+                catch (JSONException e) {
+                    // Logger.e("Can´t format JSON");
+                }
+                catch (Exception e) {
+                }
             }
         }
     } // Fim logarRemotamente()

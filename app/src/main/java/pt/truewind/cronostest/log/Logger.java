@@ -27,42 +27,49 @@ public class Logger {
     }
 
     public static void d(final String msg) {
-
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg);
+            CronosUtil.logarRemotamente(msg, false);
+        }
+    }
+
+    public static void d(final String msg, boolean toLogarApenasCartaoMemoria) {
+        if (shouldBeLogged(DEBUG)) {
+            Log.d(Constants.TAG, msg);
+            CronosUtil.logarRemotamente(msg, toLogarApenasCartaoMemoria);
         }
     }
 
     public static void i(final String msg) {
-
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg);
+            CronosUtil.logarRemotamente(msg, false);
+        }
+    }
+
+    public static void i(final String msg, boolean toLogarApenasCartaoMemoria) {
+        if (shouldBeLogged(INFO)) {
+            Log.i(Constants.TAG, msg);
+            CronosUtil.logarRemotamente(msg, toLogarApenasCartaoMemoria);
         }
     }
 
     public static void w(final String msg) {
-
         if (shouldBeLogged(WARNING)) {
             Log.w(Constants.TAG, msg);
         }
     }
 
     public static void e(final Throwable throwable) {
-
         String msg = "An exception has occurred:\n" + ExceptionUtils.getStackTrace(throwable);
-
         Log.e(Constants.TAG, msg);
     }
 
     public static void e(final String msg) {
-
         Log.e(Constants.TAG, msg);
     }
 
     public static boolean shouldBeLogged(final Integer level) {
-
         return (level >= logLevels.get(BuildConfig.LOGGER_LEVEL));
     }
 }

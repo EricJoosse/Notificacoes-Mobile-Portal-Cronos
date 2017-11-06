@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         ).execute();
 
         this.webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        refreshWebView();
+        refreshWebView(Constants.PRINCIPAL_ENDPOINT);
         Logger.d("MainActivity: onCreate() finalizado.");
     }
 
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
 
      // if (qtdNotificacoesExternasNaoLidas > 0)
-            refreshWebView();
+            refreshWebView(Constants.PRINCIPAL_ENDPOINT);
 
         Logger.d("MainActivity: onResume() finalizado.");
     }
@@ -159,7 +159,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //This is the handler that will manager to process the broadcast intent
+    //This is the handler that will manage to process the broadcast intent:
+    //Este lugar trata os cliques nas notificações "INTERNAS":
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -168,7 +169,11 @@ public class MainActivity extends AppCompatActivity {
             // Extract data included in the Intent
             String message = intent.getStringExtra("message");
             showNotification("", message);
-            refreshWebView();
+
+            if (message.toLowerCase().indexOf("cotação") > -1)
+                refreshWebView(Constants.SECONDARY_ENDPOINT);
+            else if (message.toLowerCase().indexOf("ordem") > -1)
+                refreshWebView(Constants.PRINCIPAL_ENDPOINT);
 
             //do other stuff here
             Logger.d("MainActivity: onReceive() finalizado.");
@@ -183,9 +188,9 @@ public class MainActivity extends AppCompatActivity {
         Logger.d("MainActivity: showNotification(): message = " + message);
     }
 
-    public void refreshWebView(){
+    public void refreshWebView(String endpoint) {
         Logger.d("MainActivity: refreshWebView() entrado.");
-        this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.PRINCIPAL_ENDPOINT);
+        this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
         Logger.d("MainActivity: refreshWebView() finalizado.");
     }
 

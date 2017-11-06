@@ -29,7 +29,13 @@ public class Logger {
     public static void d(final String msg) {
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg, false);
+            if (    msg.indexOf("MainActivity") > -1
+                 || msg.indexOf("CronosWebViewClient") > -1
+                 || msg.indexOf("MyFirebaseMessagingService") > -1
+               )
+                CronosUtil.logarRemotamente(msg, false);
+            else
+                CronosUtil.logarRemotamente(msg, true);
         }
     }
 
@@ -43,7 +49,13 @@ public class Logger {
     public static void i(final String msg) {
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg, false);
+            if (    msg.indexOf("MainActivity") > -1
+                 || msg.indexOf("CronosWebViewClient") > -1
+                 || msg.indexOf("MyFirebaseMessagingService") > -1
+               )
+                CronosUtil.logarRemotamente(msg, false);
+            else
+                CronosUtil.logarRemotamente(msg, true);
         }
     }
 
@@ -57,16 +69,19 @@ public class Logger {
     public static void w(final String msg) {
         if (shouldBeLogged(WARNING)) {
             Log.w(Constants.TAG, msg);
+            CronosUtil.logarRemotamente(msg, true);
         }
     }
 
     public static void e(final Throwable throwable) {
         String msg = "An exception has occurred:\n" + ExceptionUtils.getStackTrace(throwable);
         Log.e(Constants.TAG, msg);
+        CronosUtil.logarRemotamente(msg, true);
     }
 
     public static void e(final String msg) {
         Log.e(Constants.TAG, msg);
+        CronosUtil.logarRemotamente(msg, true);
     }
 
     public static boolean shouldBeLogged(final Integer level) {

@@ -62,11 +62,7 @@ public class CronosUtil {
             }
 
 
-            if (!toLogarApenasCartaoMemoria && (    mensagem.indexOf("MainActivity") > -1
-                                                 || mensagem.indexOf("CronosWebViewClient") > -1
-                                                 || mensagem.indexOf("MyFirebaseMessagingService") > -1
-                                               )
-               ) {
+            if (!toLogarApenasCartaoMemoria) {
                 try {
                     Integer id = 0;
                     EndpointService endpointService = new EndpointService();

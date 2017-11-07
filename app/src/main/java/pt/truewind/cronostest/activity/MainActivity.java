@@ -170,10 +170,7 @@ public class MainActivity extends AppCompatActivity {
             String message = intent.getStringExtra("message");
             showNotification("", message);
 
-            if (message.toLowerCase().indexOf("cotação") > -1)
-                refreshWebView(Constants.SECONDARY_ENDPOINT);
-            else if (message.toLowerCase().indexOf("ordem") > -1)
-                refreshWebView(Constants.PRINCIPAL_ENDPOINT);
+            refreshWebView("onReceive");
 
             //do other stuff here
             Logger.d("MainActivity: onReceive() finalizado.");
@@ -188,9 +185,26 @@ public class MainActivity extends AppCompatActivity {
         Logger.d("MainActivity: showNotification(): message = " + message);
     }
 
+
     public void refreshWebView(String endpoint) {
         Logger.d("MainActivity: refreshWebView() entrado.");
-        this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
+
+        // No caso que chegar uma notificação INTERNA de aviso de cotação ou de ordem,
+        // atualizar as telas e os indicadores e navegar para a tela onde o usuário estava:
+        if (endpoint.equals("onReceive")) {
+            String urlAnterior = this.webview.getUrl().toLowerCase();
+
+            if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=1") > -1)
+                refreshWebView(Constants.SECONDARY_ENDPOINT);
+            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=2") > -1)
+                refreshWebView(Constants.PRINCIPAL_ENDPOINT);
+            else if (urlAnterior.indexOf("detalheordem") > -1) {
+                // não precisa atualizar nada, pois não tem indicadores nesta tela
+            }
+        }
+        else
+            this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
+
         Logger.d("MainActivity: refreshWebView() finalizado.");
     }
 

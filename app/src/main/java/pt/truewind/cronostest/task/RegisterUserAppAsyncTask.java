@@ -1,6 +1,7 @@
 package pt.truewind.cronostest.task;
 
 import android.content.Context;
+import android.os.Build;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,6 +9,7 @@ import org.json.JSONObject;
 import pt.truewind.cronostest.BuildConfig;
 
 import pt.truewind.cronostest.constants.Constants;
+import pt.truewind.cronostest.util.CronosUtil;
 import pt.truewind.cronostest.log.Logger;
 import pt.truewind.cronostest.model.Endpoint;
 import pt.truewind.cronostest.service.local.EndpointService;
@@ -61,6 +63,9 @@ public class RegisterUserAppAsyncTask extends AbstractAsyncTask {
         try {
             tokenJSON.put("tokenId", endpoint.getToken());
             tokenJSON.put("userName", username);
+        //  tokenJSON.put("versaoAndroid", Integer.toString(Build.VERSION.SDK_INT));
+            tokenJSON.put("versaoAndroid", pt.truewind.cronostest.util.CronosUtil.getDescricaoAbreviadaVersaoAndroid(Build.VERSION.SDK_INT));
+            tokenJSON.put("modeloMobile", Build.BRAND + "." + Build.MODEL);
         } catch (JSONException e) {
             Logger.e("Can´t format JSON");
         }

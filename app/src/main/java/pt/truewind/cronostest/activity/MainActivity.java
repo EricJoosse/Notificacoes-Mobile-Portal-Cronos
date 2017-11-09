@@ -194,10 +194,16 @@ public class MainActivity extends AppCompatActivity {
         if (endpoint.equals("onReceive")) {
             String urlAnterior = this.webview.getUrl().toLowerCase();
 
-            if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=1") > -1)
-                this.webview.reload(); // loadUrl() não faz um refresh se a URL for a mesma (Constants.SECONDARY_ENDPOINT);
-            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=2") > -1)
-                this.webview.reload(); // loadUrl() não faz um refresh se a URL for a mesma  (Constants.PRINCIPAL_ENDPOINT)
+            if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=1") > -1) {
+                this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random())));
+                // Nem webview.loadUrl() nem webview.reload() fazem um refresh se a URL for a mesma (Constants.SECONDARY_ENDPOINT);
+                // Nem webview.loadUrl("javascript:window.location.reload( true )") funcionou...
+            }
+            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=2") > -1) {
+                this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.PRINCIPAL_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random())));
+                // Nem webview.loadUrl() nem webview.reload() fazem um refresh se a URL for a mesma  (Constants.PRINCIPAL_ENDPOINT)
+                // Nem webview.loadUrl("javascript:window.location.reload( true )") funcionou...
+            }
             else if (urlAnterior.indexOf("detalheordem") > -1) {
                 // não precisa atualizar nada, pois não tem indicadores nesta tela
             }

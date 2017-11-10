@@ -28,6 +28,10 @@ public class Constants {
 
     public static       boolean toGerarArquivoDebug;
 
+    public static final int NOTIFICACAO_COTACAO = 1;
+    public static final int NOTIFICACAO_ORDEM = 2;
+    public static       int tipoNotificacao = 2;
+
     //AUTOLOGIN
     public static final String AUTO_LOGIN_KEY = "autologin";
     public static final int BLOCKED_PERFIL = 5;

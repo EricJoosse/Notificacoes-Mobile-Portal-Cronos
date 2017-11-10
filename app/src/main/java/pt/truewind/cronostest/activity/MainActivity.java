@@ -143,8 +143,12 @@ public class MainActivity extends AppCompatActivity {
 
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
 
-     // if (qtdNotificacoesExternasNaoLidas > 0)
-            refreshWebView(Constants.PRINCIPAL_ENDPOINT);
+     // if (qtdNotificacoesExternasNaoLidas > 0) {
+            if (Constants.tipoNotificacao == Constants.NOTIFICACAO_COTACAO)
+                refreshWebView(Constants.SECONDARY_ENDPOINT);
+            else if (Constants.tipoNotificacao == Constants.NOTIFICACAO_ORDEM)
+                refreshWebView(Constants.PRINCIPAL_ENDPOINT);
+     // }
 
         Logger.d("MainActivity: onResume() finalizado.");
     }
@@ -168,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Extract data included in the Intent
             String message = intent.getStringExtra("message");
+         // String titulo = intent.getStringExtra("Title");  .... Não faz sentido pegar isso do MyFirebaseMessagingService
             showNotification("", message);
 
             refreshWebView("onReceive");

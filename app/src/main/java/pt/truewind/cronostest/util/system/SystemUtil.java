@@ -44,7 +44,7 @@ public class SystemUtil {
      */
     public static void loadDatabase(Context context){
 
-        Logger.d("load DATABASE " + dbLoaded);
+        Logger.d(null, "load DATABASE " + dbLoaded);
         if(!dbLoaded) {
 
             if (MultiThreadDbHelper.INSTANCE.getDbHelper() == null) {
@@ -69,7 +69,7 @@ public class SystemUtil {
     private static boolean doesDatabaseExist(Context context) {
         File dbFile = context.getDatabasePath(SQLiteHelper.DATABASE_NAME);
 
-        Logger.i("DB file: " + dbFile.getPath());
+        Logger.i(null, "DB file: " + dbFile.getPath());
 
         return dbFile.exists();
     }
@@ -132,27 +132,27 @@ public class SystemUtil {
             result = true;
 
         } catch (IOException e) {
-            Logger.e(e);
+            Logger.e(null, e);
         } finally {
             if (fout != null) {
                 try {
                     fout.close();
                 } catch (IOException e) {
-                    Logger.e(e);
+                    Logger.e(null, e);
                 }
             }
             if (zis != null) {
                 try {
                     zis.close();
                 } catch (IOException e) {
-                    Logger.e(e);
+                    Logger.e(null, e);
                 }
             }
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    Logger.e(e);
+                    Logger.e(null, e);
                 }
             }
         }
@@ -177,7 +177,7 @@ public class SystemUtil {
                 sb.append(line).append("\n");
             }
         } catch (Exception e) {
-            Logger.e(e);
+            Logger.e(null, e);
         } finally {
             reader.close();
         }
@@ -203,7 +203,7 @@ public class SystemUtil {
             result = convertStreamToString(fin);
 
         } catch (Exception e) {
-            Logger.e(e);
+            Logger.e(null, e);
         } finally {
 
             try {
@@ -213,7 +213,7 @@ public class SystemUtil {
                 }
 
             } catch (IOException e) {
-                Logger.e(e);
+                Logger.e(null, e);
             }
         }
 
@@ -274,7 +274,7 @@ public class SystemUtil {
             // out put file
             out = new ZipOutputStream(new FileOutputStream(zipFileName));
         } catch (FileNotFoundException e1) {
-            Logger.e(e1);
+            Logger.e(null, e1);
         }
 
         try {
@@ -291,17 +291,17 @@ public class SystemUtil {
             }
             return true;
         } catch (IOException e) {
-            Logger.e(e);
+            Logger.e(null, e);
         } finally {
             try {
                 out.close();
             } catch (IOException e) {
-                Logger.e(e);
+                Logger.e(null, e);
             }
             try {
                 in.close();
             } catch (IOException e) {
-                Logger.e(e);
+                Logger.e(null, e);
             }
         }
         return false;

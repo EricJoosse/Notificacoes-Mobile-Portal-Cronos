@@ -1,5 +1,6 @@
 package pt.truewind.cronostest.log;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -26,62 +27,62 @@ public class Logger {
         logLevels.add(ERROR);
     }
 
-    public static void d(final String msg) {
+    public static void d(Context context, final String msg) {
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
             if (    msg.indexOf("MainActivity") > -1
-                 || msg.indexOf("CronosWebViewClient") > -1
-                 || msg.indexOf("MyFirebaseMessagingService") > -1
-               )
-                CronosUtil.logarRemotamente(msg, false);
+                    || msg.indexOf("CronosWebViewClient") > -1
+                    || msg.indexOf("MyFirebaseMessagingService") > -1
+                    )
+                CronosUtil.logarRemotamente(context, msg, false);
             else
-                CronosUtil.logarRemotamente(msg, true);
+                CronosUtil.logarRemotamente(context, msg, true);
         }
     }
 
-    public static void d(final String msg, boolean toLogarApenasCartaoMemoria) {
+    public static void d(Context context, final String msg, boolean toLogarApenasCartaoMemoria) {
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg, toLogarApenasCartaoMemoria);
+            CronosUtil.logarRemotamente(context, msg, toLogarApenasCartaoMemoria);
         }
     }
 
-    public static void i(final String msg) {
+    public static void i(Context context, final String msg) {
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
             if (    msg.indexOf("MainActivity") > -1
-                 || msg.indexOf("CronosWebViewClient") > -1
-                 || msg.indexOf("MyFirebaseMessagingService") > -1
-               )
-                CronosUtil.logarRemotamente(msg, false);
+                    || msg.indexOf("CronosWebViewClient") > -1
+                    || msg.indexOf("MyFirebaseMessagingService") > -1
+                    )
+                CronosUtil.logarRemotamente(context, msg, false);
             else
-                CronosUtil.logarRemotamente(msg, true);
+                CronosUtil.logarRemotamente(context, msg, true);
         }
     }
 
-    public static void i(final String msg, boolean toLogarApenasCartaoMemoria) {
+    public static void i(Context context, final String msg, boolean toLogarApenasCartaoMemoria) {
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg, toLogarApenasCartaoMemoria);
+            CronosUtil.logarRemotamente(context, msg, toLogarApenasCartaoMemoria);
         }
     }
 
-    public static void w(final String msg) {
+    public static void w(Context context, final String msg) {
         if (shouldBeLogged(WARNING)) {
             Log.w(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(msg, true);
+            CronosUtil.logarRemotamente(context, msg, true);
         }
     }
 
-    public static void e(final Throwable throwable) {
+    public static void e(Context context, final Throwable throwable) {
         String msg = "An exception has occurred:\n" + ExceptionUtils.getStackTrace(throwable);
         Log.e(Constants.TAG, msg);
-        CronosUtil.logarRemotamente(msg, true);
+        CronosUtil.logarRemotamente(context, msg, true);
     }
 
-    public static void e(final String msg) {
+    public static void e(Context context, final String msg) {
         Log.e(Constants.TAG, msg);
-        CronosUtil.logarRemotamente(msg, true);
+        CronosUtil.logarRemotamente(context, msg, true);
     }
 
     public static boolean shouldBeLogged(final Integer level) {

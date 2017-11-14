@@ -67,26 +67,26 @@ public class RegisterUserAppAsyncTask extends AbstractAsyncTask {
             tokenJSON.put("versaoAndroid", pt.truewind.cronostest.util.CronosUtil.getDescricaoAbreviadaVersaoAndroid(Build.VERSION.SDK_INT));
             tokenJSON.put("modeloMobile", Build.BRAND + "." + Build.MODEL);
         } catch (JSONException e) {
-            Logger.e("Can´t format JSON");
+            Logger.e(null, "Can´t format JSON");
         }
-        Logger.d(tokenJSON.toString());
+        Logger.d(null, tokenJSON.toString());
         //this.server = "http://10.123.175.136:8080/username/users";
         this.url = BuildConfig.ENDPOINT + Constants.TOKEN_ACCESS;
 
         String response = "";
-        Logger.e("Send token to server");
+        Logger.e(null, "Send token to server");
 
         RemoteAbstractService service = new RemoteAbstractService(this.url);
 
         try {
             response = service.performPostCall(tokenJSON.toString(), Constants.CONTENT_TYPE_APP_JSON, Constants.POST);
-            Logger.d("Response: " + response);
+            Logger.d(null, "Response: " + response);
             status = true;
         }catch (Exception e) {
             // displayLoding(false);
-            Logger.e("Error ...");
+            Logger.e(null, "Error ...");
         }
-        Logger.d("Status: " + String.valueOf(status));
+        Logger.d(null, "Status: " + String.valueOf(status));
         return status;
     }
 

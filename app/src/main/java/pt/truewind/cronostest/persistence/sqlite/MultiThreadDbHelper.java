@@ -52,7 +52,7 @@ public class MultiThreadDbHelper {
         this.waitingThreads++;
 
         if(this.waitingThreads > 2) {
-            Logger.w("Waiting threads: "+ this.waitingThreads);
+            Logger.w(null, "Waiting threads: "+ this.waitingThreads);
         }
         // ------------------
 
@@ -60,14 +60,14 @@ public class MultiThreadDbHelper {
             try {
                 wait();
             } catch (InterruptedException e) {
-                Logger.e(e);
+                Logger.e(null, e);
             }
         }
 
         this.waitingThreads--;
 
         if(this.blockingThread != null && this.blockingThread == Thread.currentThread().getId()) {
-            Logger.e("The same Thread is locking the db twice! Fix it!");
+            Logger.e(null, "The same Thread is locking the db twice! Fix it!");
         }
 
         this.blockingThread = Thread.currentThread().getId();
@@ -98,7 +98,7 @@ public class MultiThreadDbHelper {
      */
     public synchronized void unlock(){
         if(this.blockingThread != null && this.blockingThread != Thread.currentThread().getId()) {
-            Logger.e("MultiThreadDbHelper.INSTANCE.unlock() was called by a thread that did not have the lock! Fix it!");
+            Logger.e(null, "MultiThreadDbHelper.INSTANCE.unlock() was called by a thread that did not have the lock! Fix it!");
         }
 
         this.isLocked = false;
@@ -109,6 +109,6 @@ public class MultiThreadDbHelper {
     public static void releaseMemory() {
 
         int releasedMemory = SQLiteDatabase.releaseMemory();
-        Logger.i("SQLite released " + (releasedMemory/1024) + " KB in memory");
+        Logger.i(null, "SQLite released " + (releasedMemory/1024) + " KB in memory");
     }
 }

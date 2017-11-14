@@ -53,7 +53,7 @@ public class RemoteAbstractService {
 
             int responseCode = conn.getResponseCode();
             // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
-       //   Logger.d("Response Meassage: " + conn.getResponseMessage());
+       //   Logger.d(null, "Response Meassage: " + conn.getResponseMessage());
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {
                 String line;
@@ -62,7 +62,7 @@ public class RemoteAbstractService {
                     response += line;
                 }
                 // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
-            //  Logger.e("COOKIE: " + conn.getHeaderField("Set-Cookie"));
+            //  Logger.e(null, "COOKIE: " + conn.getHeaderField("Set-Cookie"));
                 this.cookieManager.setCookie(this.server, conn.getHeaderField("Set-Cookie"));
             }
             else {

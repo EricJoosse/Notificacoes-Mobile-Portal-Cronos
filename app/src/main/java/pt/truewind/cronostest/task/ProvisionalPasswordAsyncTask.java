@@ -52,12 +52,12 @@ public class ProvisionalPasswordAsyncTask extends AbstractAsyncTask{
         boolean status = false;
 
         String response = "";
-        Logger.d("Authenticating");
+        Logger.d(null, "Authenticating");
 
         try {
             RemoteAbstractService service = new RemoteAbstractService(this.url);
             response = service.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-            Logger.d("Response Code da Senha Provisória: " + response);
+            Logger.d(null, "Response Code da Senha Provisória: " + response);
 
             if(response.contains("sucesso")){
                 status = true;
@@ -68,7 +68,7 @@ public class ProvisionalPasswordAsyncTask extends AbstractAsyncTask{
             }
         } catch (Exception e) {
             // displayLoding(false);
-            Logger.e("Error ...");
+            Logger.e(null, "Error ...");
         }
         return status;
     }
@@ -86,7 +86,7 @@ public class ProvisionalPasswordAsyncTask extends AbstractAsyncTask{
         stringBuilder.append("UserName=").append(this.username)
                 .append("&Password=").append(this.password);
 
-        Logger.d(stringBuilder.toString());
+        Logger.d(null, stringBuilder.toString());
         return stringBuilder.toString();
     }
 

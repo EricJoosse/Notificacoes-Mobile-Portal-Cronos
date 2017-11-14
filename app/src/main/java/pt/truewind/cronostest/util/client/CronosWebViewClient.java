@@ -45,7 +45,7 @@ public class CronosWebViewClient extends WebViewClient {
     @Override
     @TargetApi(21)
     public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-        Logger.d("CronosWebViewClient: onReceivedHttpError() entrado: errorResponse.getStatusCode() = " + errorResponse.getStatusCode());
+        Logger.d(this.context, "CronosWebViewClient: onReceivedHttpError() entrado: errorResponse.getStatusCode() = " + errorResponse.getStatusCode());
         if (errorResponse.getStatusCode() == 401 || errorResponse.getStatusCode() == 403) {
             LoginActivity telaLogin = new LoginActivity();
             telaLogin.showError("Queda da Autenticação", "Favor digitar seu usuário/senha novamente.");
@@ -56,7 +56,7 @@ public class CronosWebViewClient extends WebViewClient {
     @TargetApi(23)
     @Override
     public void onReceivedError(WebView view, WebResourceRequest request, android.webkit.WebResourceError error) {
-        Logger.d("CronosWebViewClient: onReceivedError() entrado: error.getErrorCode() = " + error.getErrorCode());
+        Logger.d(this.context, "CronosWebViewClient: onReceivedError() entrado: error.getErrorCode() = " + error.getErrorCode());
         if (error.getErrorCode() == ERROR_TIMEOUT) {
             view.stopLoading();  // may not be needed
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
@@ -69,8 +69,8 @@ public class CronosWebViewClient extends WebViewClient {
 
     @Override
     public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-        Logger.d("CronosWebViewClient: onReceivedHttpAuthRequest() entrado: host = " + host);
-        Logger.d("CronosWebViewClient: onReceivedHttpAuthRequest() entrado: realm = " +realm);
+        Logger.d(this.context, "CronosWebViewClient: onReceivedHttpAuthRequest() entrado: host = " + host);
+        Logger.d(this.context, "CronosWebViewClient: onReceivedHttpAuthRequest() entrado: realm = " +realm);
         handler.proceed(this.username, this.password);
     }
 
@@ -86,13 +86,13 @@ public class CronosWebViewClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         loading.setVisibility(View.VISIBLE);
-        Logger.d("CronosWebViewClient: onPageStarted() entrado");
+        Logger.d(this.context, "CronosWebViewClient: onPageStarted() entrado");
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
         loading.setVisibility(View.GONE);
-        Logger.d("CronosWebViewClient: onPageStarted() finalizado");
+        Logger.d(this.context, "CronosWebViewClient: onPageStarted() finalizado");
     }
 
 //    @Override
@@ -105,7 +105,7 @@ public class CronosWebViewClient extends WebViewClient {
 //            return true;
 //        }
 //
-//        Logger.d(url);
+//        Logger.d(this.context, url);
 //        if( url.startsWith("http:") || url.startsWith("https:") ) {
 //            return false;
 //        }
@@ -117,7 +117,7 @@ public class CronosWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        Logger.d("CronosWebViewClient: shouldOverrideUrlLoading() entrado: SystemUtil.isOnline(this.context) = " + SystemUtil.isOnline(this.context));
+        Logger.d(this.context, "CronosWebViewClient: shouldOverrideUrlLoading() entrado: SystemUtil.isOnline(this.context) = " + SystemUtil.isOnline(this.context));
         if (SystemUtil.isOnline(this.context)) {
             // return false to let the WebView handle the URL
             return false;

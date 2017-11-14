@@ -55,12 +55,12 @@ public class DefinitivePasswordAsyncTask extends AbstractAsyncTask {
         boolean status = false;
 
         String response = "";
-        Logger.d("Authenticating");
+        Logger.d(null, "Authenticating");
 
         try {
             RemoteAbstractService service = new RemoteAbstractService(this.url);
             response = service.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-            Logger.d("Response Code da Senha Definitiva: " + response);
+            Logger.d(null, "Response Code da Senha Definitiva: " + response);
 
             if(response.contains("sucesso")){
                 status = true;
@@ -71,7 +71,7 @@ public class DefinitivePasswordAsyncTask extends AbstractAsyncTask {
             }
         } catch (Exception e) {
             // displayLoding(false);
-            Logger.e("Error ...");
+            Logger.e(null, "Error ...");
         }
         return status;
     }
@@ -91,7 +91,7 @@ public class DefinitivePasswordAsyncTask extends AbstractAsyncTask {
                      .append("&NovaSenha=").append(this.newPassword)
                      .append("&ConfirmaSenha=").append(this.confirmPassword);
 
-        Logger.d(stringBuilder.toString());
+        Logger.d(null, stringBuilder.toString());
         return stringBuilder.toString();
     }
 }

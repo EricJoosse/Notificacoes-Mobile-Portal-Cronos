@@ -50,14 +50,14 @@ public class SQLiteHelper extends SQLiteOpenHelper implements DBHelper {
 
     @Override
     public void onCreate(final SQLiteDatabase db) {
-        Logger.d("Database created 0");
+        Logger.d(null, "Database created 0");
         try{
             loadDatabaseFromFile(R.raw.tables, db);
         }catch(Exception e) {
-            Logger.e(e);
+            Logger.e(null, e);
         }
         createdDatabase = true;
-        Logger.d("Database created");
+        Logger.d(null, "Database created");
     }
 
     @Override
@@ -83,7 +83,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements DBHelper {
             }
 
         } catch (Exception e) {
-            Logger.e(e);
+            Logger.e(null, e);
             entity = null;
 
         }  finally {
@@ -111,7 +111,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements DBHelper {
             list = buildList(cursor, rowMapper);
 
         } catch (Exception e) {
-            Logger.e(e);
+            Logger.e(null, e);
             list = new ArrayList<T>();
         } finally {
             closeCursor(cursor);
@@ -141,7 +141,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements DBHelper {
             cursor.close();
 
             if(!cursor.isClosed()) {
-                Logger.e("cursor.close() was called but cursor is still opened!");
+                Logger.e(null, "cursor.close() was called but cursor is still opened!");
             }
         }
     }
@@ -171,7 +171,7 @@ public class SQLiteHelper extends SQLiteOpenHelper implements DBHelper {
             statement.clearBindings();
             count = (int) statement.simpleQueryForLong();
         } catch (Exception e) {
-            Logger.e(e);
+            Logger.e(null, e);
             count = 0;
         }  finally {
             if(statement != null) {
@@ -189,13 +189,13 @@ public class SQLiteHelper extends SQLiteOpenHelper implements DBHelper {
 
         if(createdDatabase) {
 
-            Logger.i("Vacuum in progress");
+            Logger.i(null, "Vacuum in progress");
 
             // Activate auto vacuum
             this.db.execSQL(ACTIVATE_AUTO_VACUUM);
             this.db.execSQL(OPTIMIZE_DATABASE);
             createdDatabase = false;
-            Logger.i("Vacuum done");
+            Logger.i(null, "Vacuum done");
         }
     }
 

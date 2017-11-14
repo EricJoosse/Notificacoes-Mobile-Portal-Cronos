@@ -50,37 +50,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(com.google.firebase.messaging.RemoteMessage remoteMessage) {
         // Por enquanto não enviar para o arquivo de LOG remoto no site antes da autenticação:
         if (remoteMessage.getData() == null || remoteMessage.getData().size() == 0)
-            Logger.d("MyFirebaseMessagingService: onMessageReceived() entrado.");
+            Logger.d(this, "MyFirebaseMessagingService: onMessageReceived() entrado.");
 
         if(remoteMessage.getNotification() != null){
             String notification = remoteMessage.getNotification().getBody().toString();
-            Logger.d("MyFirebaseMessagingService: Notification = " + notification);
+            Logger.d(this, "MyFirebaseMessagingService: Notification = " + notification);
             updateMyActivity(this, notification);
         }
         if(!remoteMessage.getData().toString().equals("{}")) {
-            Logger.d("MyFirebaseMessagingService: remoteMessage.getData().toString() = " + remoteMessage.getData().toString());
+            Logger.d(this, "MyFirebaseMessagingService: remoteMessage.getData().toString() = " + remoteMessage.getData().toString());
         }
 
         if (remoteMessage.getData() == null || remoteMessage.getData().size() == 0)
-            Logger.d("MyFirebaseMessagingService: onMessageReceived() finalizado.");
+            Logger.d(this, "MyFirebaseMessagingService: onMessageReceived() finalizado.");
     }
 
     // handleIntent() method is called everytime whether app is in foreground, background or killed state:
     @Override
     public void handleIntent(Intent intent) {
 //      super.handleIntent(intent);
-        Logger.d(null, "MyFirebaseMessagingService - handleIntent() entrado ", true);
-        Logger.d(null, "MyFirebaseMessagingService - handleIntent(): Foreground.get().isBackground() = " + Foreground.get().isBackground(), true);
+        Logger.d(null, null, "MyFirebaseMessagingService - handleIntent() entrado ", true);
+        Logger.d(null, null, "MyFirebaseMessagingService - handleIntent(): Foreground.get().isBackground() = " + Foreground.get().isBackground(), true);
 
         if (Foreground.get().isBackground()) {
             for (String key : intent.getExtras().keySet()) {
                 Object value = intent.getExtras().get(key);
                 // Apenas logar para SD card:
-                Logger.d(null, "MyFirebaseMessagingService - handleIntent(): key = " + key + ", value = " + value.toString(), true);
+                Logger.d(null, null, "MyFirebaseMessagingService - handleIntent(): key = " + key + ", value = " + value.toString(), true);
             }
-            Logger.d(null, intent.getExtras().getString("key"), true);
-            Logger.d(null, intent.getExtras().getString("gcm.notification.body"), true);
-            Logger.d(null, intent.getExtras().getString("stuff"), true);
+            Logger.d(null, null, intent.getExtras().getString("key"), true);
+            Logger.d(null, null, intent.getExtras().getString("gcm.notification.body"), true);
+            Logger.d(null, null, intent.getExtras().getString("stuff"), true);
 
             if (intent.getExtras() != null) {
                 String notification_msg = intent.getExtras().getString("gcm.notification.body");
@@ -89,10 +89,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 else if (notification_msg.toLowerCase().indexOf("ordem") > -1)
                     Constants.tipoNotificacao = Constants.NOTIFICACAO_ORDEM;
 
-                Logger.d(null, "MyFirebaseMessagingService - handleIntent(): Constants.tipoNotificacao = " + Constants.tipoNotificacao, true);
+                Logger.d(null, null, "MyFirebaseMessagingService - handleIntent(): Constants.tipoNotificacao = " + Constants.tipoNotificacao, true);
             }
         }
-        Logger.d(null, "MyFirebaseMessagingService - handleIntent() finalizado ", true);
+        Logger.d(null, null, "MyFirebaseMessagingService - handleIntent() finalizado ", true);
     }
 
 

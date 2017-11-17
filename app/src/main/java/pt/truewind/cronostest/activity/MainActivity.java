@@ -198,16 +198,28 @@ public class MainActivity extends AppCompatActivity {
         // atualizar as telas e os indicadores e navegar para a tela onde o usuário estava:
         if (endpoint.equals("onReceive")) {
             String urlAnterior = this.webview.getUrl().toLowerCase();
+            Logger.d(this, "urlAnterior = " + urlAnterior);
 
-            if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=1") > -1) {
-                this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random())));
-                // Nem webview.loadUrl() nem webview.reload() fazem um refresh se a URL for a mesma (Constants.SECONDARY_ENDPOINT);
-                // Nem webview.loadUrl("javascript:window.location.reload( true )") funcionou...
+            if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=1") > -1) {
+                // O seguinte funciona, provavelmente por causa de this.webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE) no onCreate():
+                this.webview.reload();
+
+                // Se precisar alterar a configuração do cache no futuro, o refresh provavelmente
+                // não vai funcionar mais usando webview.reload() pois a URL é a mesma.
+
+                // Nem o seguinte vai funcionar mais, provavelmente: this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT);
+
+                // Alternativos:
+                // this.webview.loadUrl("javascript:window.location.reload(true)");
+
+                // Ou:
+                // String urlNovo = BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random()));
+                // Logger.d(this, "urlNovo = " + urlNovo);
+                // this.webview.loadUrl(urlNovo);
             }
-            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activeTab=2") > -1) {
-                this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.PRINCIPAL_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random())));
-                // Nem webview.loadUrl() nem webview.reload() fazem um refresh se a URL for a mesma  (Constants.PRINCIPAL_ENDPOINT)
-                // Nem webview.loadUrl("javascript:window.location.reload( true )") funcionou...
+            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=2") > -1) {
+                // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
+                this.webview.reload();
             }
             else if (urlAnterior.indexOf("detalheordem") > -1) {
                 // não precisa atualizar nada, pois não tem indicadores nesta tela

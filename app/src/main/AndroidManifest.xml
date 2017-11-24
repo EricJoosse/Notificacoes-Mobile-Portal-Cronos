@@ -45,7 +45,19 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".activity.CotacaoActivity">
+            <intent-filter>
+                <action android:name="pt.truewind.cronostest.activity.CotacaoActivity" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.OrdemActivity">
+            <intent-filter>
+                <action android:name="pt.truewind.cronostest.activity.OrdemActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>

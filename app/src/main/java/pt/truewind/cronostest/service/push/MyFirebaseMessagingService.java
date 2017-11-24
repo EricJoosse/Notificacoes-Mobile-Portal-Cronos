@@ -65,35 +65,42 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Logger.d(this, "MyFirebaseMessagingService: onMessageReceived() finalizado.");
     }
 
+
     // handleIntent() method is called everytime whether app is in foreground, background or killed state:
-    @Override
-    public void handleIntent(Intent intent) {
-//      super.handleIntent(intent);
-        Logger.d(null, null, "MyFirebaseMessagingService - handleIntent() entrado ", true);
-        Logger.d(null, null, "MyFirebaseMessagingService - handleIntent(): Foreground.get().isBackground() = " + Foreground.get().isBackground(), true);
-
-        if (Foreground.get().isBackground()) {
-            for (String key : intent.getExtras().keySet()) {
-                Object value = intent.getExtras().get(key);
-                // Apenas logar para SD card:
-                Logger.d(null, null, "MyFirebaseMessagingService - handleIntent(): key = " + key + ", value = " + value.toString(), true);
-            }
-            Logger.d(null, null, intent.getExtras().getString("key"), true);
-            Logger.d(null, null, intent.getExtras().getString("gcm.notification.body"), true);
-            Logger.d(null, null, intent.getExtras().getString("stuff"), true);
-
-            if (intent.getExtras() != null) {
-                String notification_msg = intent.getExtras().getString("gcm.notification.body");
-                if (notification_msg.toLowerCase().indexOf("cotação") > -1)
-                    Constants.tipoNotificacao = Constants.NOTIFICACAO_COTACAO;
-                else if (notification_msg.toLowerCase().indexOf("ordem") > -1)
-                    Constants.tipoNotificacao = Constants.NOTIFICACAO_ORDEM;
-
-                Logger.d(null, null, "MyFirebaseMessagingService - handleIntent(): Constants.tipoNotificacao = " + Constants.tipoNotificacao, true);
-            }
-        }
-        Logger.d(null, null, "MyFirebaseMessagingService - handleIntent() finalizado ", true);
-    }
+    // Foi testado que apenas a mera existência do método handleIntent()
+    // já é suficiente para remover a notificação externa da bandeja de sistema,
+    // independente do conteúdo do método, com o app fechado ou em segundo plano.
+//    @Override
+//    public void handleIntent(Intent intent) {
+////      super.handleIntent(intent);
+//        try {
+//            Logger.d(this, "MyFirebaseMessagingService - handleIntent() entrado ");
+//            Logger.d(this, "MyFirebaseMessagingService - handleIntent(): Foreground.get().isBackground() = " + Foreground.get().isBackground());
+//
+//            if (Foreground.get().isBackground()) {
+//                for (String key : intent.getExtras().keySet()) {
+//                    Object value = intent.getExtras().get(key);
+//                    // Apenas logar para SD card:
+//                    Logger.d(this, "MyFirebaseMessagingService - handleIntent(): key = " + key + ", value = " + value.toString());
+//                }
+//
+//                if (intent.getExtras() != null) {
+//                    String notification_msg = intent.getExtras().getString("gcm.notification.body");
+//                    Logger.d(this, "MyFirebaseMessagingService - handleIntent(): Notification = " + notification_msg);
+//                    if (notification_msg.toLowerCase().indexOf("cotação") > -1)
+//                        Constants.tipoNotificacao = Constants.NOTIFICACAO_COTACAO;
+//                    else if (notification_msg.toLowerCase().indexOf("ordem") > -1)
+//                        Constants.tipoNotificacao = Constants.NOTIFICACAO_ORDEM;
+//
+//                    Logger.d(this, "MyFirebaseMessagingService - handleIntent(): Constants.tipoNotificacao = " + Constants.tipoNotificacao);
+//                }
+//            }
+//            Logger.d(this, "MyFirebaseMessagingService - handleIntent() finalizado ");
+//        }
+//        catch (Exception ex) {
+//            Logger.d(this, "MyFirebaseMessagingService - handleIntent() - Exception entrado: Erro:" + ex.getMessage());
+//        }
+//    }
 
 
     // This function will create an intent. This intent must take as parameter the "unique_name" that you registered your activity with

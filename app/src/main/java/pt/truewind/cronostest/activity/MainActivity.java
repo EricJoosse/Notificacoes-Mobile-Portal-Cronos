@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
 
+        Logger.d(this, "MainActivity: onResume(): Constants.tipoNotificacao = " + Constants.tipoNotificacao);
      // if (qtdNotificacoesExternasNaoLidas > 0) {
             if (Constants.tipoNotificacao == Constants.NOTIFICACAO_COTACAO)
                 refreshWebView(Constants.SECONDARY_ENDPOINT);

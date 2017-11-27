@@ -17,6 +17,7 @@ public class OrdemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cotacao);
         Constants.tipoNotificacao = Constants.NOTIFICACAO_ORDEM;
         startMainActivity();
+        this.finish();
         Logger.d(this, "OrdemActivity: onCreate() finalizado.");
     }
 

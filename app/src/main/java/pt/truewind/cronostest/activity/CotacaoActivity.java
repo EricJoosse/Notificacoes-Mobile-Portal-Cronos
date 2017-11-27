@@ -17,6 +17,7 @@ public class CotacaoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cotacao);
         Constants.tipoNotificacao = Constants.NOTIFICACAO_COTACAO;
         startMainActivity();
+        this.finish();
         Logger.d(this, "CotacaoActivity: onCreate() finalizado.");
     }
 

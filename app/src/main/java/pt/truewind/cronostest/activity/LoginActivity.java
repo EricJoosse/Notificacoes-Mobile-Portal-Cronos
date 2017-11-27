@@ -470,6 +470,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        this.finish();
 
         Logger.d(null, "LoginActivity: startMainActivity() finalizado");
     }

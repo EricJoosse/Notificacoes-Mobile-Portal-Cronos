@@ -125,8 +125,7 @@ public class CronosWebViewClient extends WebViewClient {
             // show the proper "not connected" message
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
             //  view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
-            LoginActivity telaLogin = new LoginActivity();
-            telaLogin.showLogin();
+            ((Activity) this.context).finish();
             // return true if the host application wants to leave the current
             // WebView and handle the url itself
             return true;

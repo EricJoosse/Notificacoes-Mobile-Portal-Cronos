@@ -54,15 +54,29 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site
+        // Finish doesn't close the app, it just closes the activity.
+        // If this is the launcher activity, then it will close your app;
+        // if not, it will go back to the previous activity
+        // Esta tela Login é a "launcher activity" (definido no manifest)
+
+        // Foi testadao que o botão "Voltar" de Android, com o usuário posicionado na tela de Login,
+        // com "this.finish()" realmente volta para o aplicativo anterior (se tiver),
+        // ou volta para a tela principal do celular (se não tiver)).
+        // Obs.: o caso do aplicativo anterior apenas pode acontece quando nosso app for iniciado pela notificação (externa).
+
+//      finishAffinity();       // Volta para a activity anterior, fechando  também a mesma activity em outros apps, se tiver
+        this.finish();          // Volta para a activity anterior
+//      super.onBackPressed();  // Volta para a activity anterior
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site:
-        return (keyCode == KeyEvent.KEYCODE_BACK ? true : super.onKeyDown(keyCode, event));
-    }
+
+    // O seguinte serve apenas para Android < 2.0:
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event)
+//    {
+//        // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site:
+//        return (keyCode == KeyEvent.KEYCODE_BACK ? true : super.onKeyDown(keyCode, event));
+//    }
 
 
     @Override

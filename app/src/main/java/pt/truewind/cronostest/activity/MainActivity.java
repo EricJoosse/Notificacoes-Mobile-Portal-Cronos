@@ -103,15 +103,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        // Foi testado que se commentar TUDO dentro do onBackPressed(),
+        // o botão "Voltar" de Android está desabilitado,
+        // e não volta mais para a tela anterior nem para o aplicativo anterior.
+
         // Desabilitar o botão Voltar de Android pois isso está tratado dentro do web site:
 //        if(webview.canGoBack()){
 //            webview.goBack();
 //        }
 //        else {
-//            finishAffinity();
+//            finishAffinity();       // Volta para a activity anterior, fechando  também a mesma activity em outros apps, se tiver
+//            finish();               // Volta para a activity anterior
+//            super.onBackPressed();  // Volta para a activity anterior
 //        }
     }
 
+
+    // O seguinte serve apenas para Android < 2.0:
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

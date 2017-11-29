@@ -96,7 +96,10 @@ public class MainActivity extends AppCompatActivity {
         ).execute();
 
         this.webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        refreshWebView(Constants.PRINCIPAL_ENDPOINT);
+
+        // O onResume() sempre executa após o onCreate(), então não duplicar o seguinte:
+     // refreshWebView(Constants.PRINCIPAL_ENDPOINT);
+
         Logger.d(this, "MainActivity: onCreate() finalizado.");
     }
 

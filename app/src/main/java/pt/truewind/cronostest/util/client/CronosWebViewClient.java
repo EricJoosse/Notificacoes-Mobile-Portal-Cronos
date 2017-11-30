@@ -45,7 +45,7 @@ public class CronosWebViewClient extends WebViewClient {
     @Override
     @TargetApi(21)
     public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-        Logger.d(this.context, "CronosWebViewClient: onReceivedHttpError() entrado: errorResponse.getStatusCode() = " + errorResponse.getStatusCode());
+        Logger.d(this.context, "CronosWebViewClient: onReceivedHttpError() entrado: errorResponse.getStatusCode() - errorResponse.getReasonPhrase()  = " + errorResponse.getStatusCode() + " - " + errorResponse.getReasonPhrase());
         if (errorResponse.getStatusCode() == 401 || errorResponse.getStatusCode() == 403) {
             LoginActivity telaLogin = new LoginActivity();
             telaLogin.showError("Queda da Autenticação", "Favor digitar seu usuário/senha novamente.");
@@ -86,13 +86,15 @@ public class CronosWebViewClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         loading.setVisibility(View.VISIBLE);
-        Logger.d(this.context, "CronosWebViewClient: onPageStarted() entrado");
+        // Logger.d(this.context, "CronosWebViewClient: onPageStarted() entrado");
+        Logger.d(this.context, "CronosWebViewClient - onPageStarted(): url = " + url);
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
         loading.setVisibility(View.GONE);
-        Logger.d(this.context, "CronosWebViewClient: onPageStarted() finalizado");
+        Logger.d(this.context, "CronosWebViewClient - onPageFinished(): url = " + url);
+        // Logger.d(this.context, "CronosWebViewClient: onPageFinished() finalizado");
     }
 
 //    @Override

@@ -27,13 +27,21 @@ public class Logger {
         logLevels.add(ERROR);
     }
 
+    // Antes da primeira autenticação após a instalação do APK,
+    // a chamada do web service do arquivo de log remoto não funciona,
+    // porém também não dá erro não tratado para os usuários e também não trava o APK,
+    // então antes da primeira autenticação não faz mau e simplesmente não faz nada.
+    // Na segunda entrada funciona sim (devido ao autologin provavelmente):
     public static void d(Context context, final String msg) {
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
-            if (    msg.indexOf("MainActivity") > -1
+            if (       msg.indexOf("MainActivity") > -1
+                    || msg.indexOf("LoginActivity") > -1
+                    || msg.indexOf("CotacaoActivity") > -1
+                    || msg.indexOf("OrdemActivity") > -1
                     || msg.indexOf("CronosWebViewClient") > -1
                     || msg.indexOf("MyFirebaseMessagingService") > -1
-                    )
+               )
                 CronosUtil.logarRemotamente(context, msg, false);
             else
                 CronosUtil.logarRemotamente(context, msg, true);
@@ -47,13 +55,17 @@ public class Logger {
         }
     }
 
+    // Veja o comentário acima de Logger.d() acima
     public static void i(Context context, final String msg) {
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
-            if (    msg.indexOf("MainActivity") > -1
+            if (       msg.indexOf("MainActivity") > -1
+                    || msg.indexOf("LoginActivity") > -1
+                    || msg.indexOf("CotacaoActivity") > -1
+                    || msg.indexOf("OrdemActivity") > -1
                     || msg.indexOf("CronosWebViewClient") > -1
                     || msg.indexOf("MyFirebaseMessagingService") > -1
-                    )
+               )
                 CronosUtil.logarRemotamente(context, msg, false);
             else
                 CronosUtil.logarRemotamente(context, msg, true);

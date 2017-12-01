@@ -46,23 +46,34 @@ public class CronosWebViewClient extends WebViewClient {
     @TargetApi(21)
     public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
         Logger.d(this.context, "CronosWebViewClient: onReceivedHttpError() entrado: errorResponse.getStatusCode() - errorResponse.getReasonPhrase()  = " + errorResponse.getStatusCode() + " - " + errorResponse.getReasonPhrase());
-        if (errorResponse.getStatusCode() == 401 || errorResponse.getStatusCode() == 403) {
+
+        if (!SystemUtil.isOnline(this.context)) {
+            Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
+            ((Activity) this.context).finish();
+        }
+        else if (errorResponse.getStatusCode() == 401 || errorResponse.getStatusCode() == 403) {
             LoginActivity telaLogin = new LoginActivity();
             telaLogin.showError("Queda da Autenticação", "Favor digitar seu usuário/senha novamente.");
             telaLogin.showLogin();
         }
     }
 
+
     @TargetApi(23)
     @Override
     public void onReceivedError(WebView view, WebResourceRequest request, android.webkit.WebResourceError error) {
         Logger.d(this.context, "CronosWebViewClient: onReceivedError() entrado: error.getErrorCode() = " + error.getErrorCode());
-        if (error.getErrorCode() == ERROR_TIMEOUT) {
+
+        if (!SystemUtil.isOnline(this.context)) {
             view.stopLoading();  // may not be needed
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
+            ((Activity) this.context).finish();
+        }
+        else if (error.getErrorCode() == ERROR_TIMEOUT) {
+            view.stopLoading();  // may not be needed
+            Toast.makeText(this.context, "O Portal Cronos está fora do ar. Favor entrar em contato com o Suporte do Portal Cronos.", Toast.LENGTH_LONG).show();
             // view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
-            LoginActivity telaLogin = new LoginActivity();
-            telaLogin.showLogin();
+            ((Activity) this.context).finish();
         }
     }
 

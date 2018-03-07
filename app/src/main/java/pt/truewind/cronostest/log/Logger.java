@@ -33,68 +33,73 @@ public class Logger {
     // então antes da primeira autenticação não faz mau e simplesmente não faz nada.
     // Na segunda entrada funciona sim (devido ao autologin provavelmente):
     public static void d(Context context, final String msg) {
+        if (    msg.indexOf("MainActivity") > -1
+                || msg.indexOf("LoginActivity") > -1
+                || msg.indexOf("CotacaoActivity") > -1
+                || msg.indexOf("OrdemActivity") > -1
+                || msg.indexOf("CronosWebViewClient") > -1
+                || msg.indexOf("MyFirebaseMessagingService") > -1
+           )
+            CronosUtil.logarRemotamente(context, msg, false);
+        else
+            CronosUtil.logarRemotamente(context, msg, true);
+
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
-            if (       msg.indexOf("MainActivity") > -1
-                    || msg.indexOf("LoginActivity") > -1
-                    || msg.indexOf("CotacaoActivity") > -1
-                    || msg.indexOf("OrdemActivity") > -1
-                    || msg.indexOf("CronosWebViewClient") > -1
-                    || msg.indexOf("MyFirebaseMessagingService") > -1
-               )
-                CronosUtil.logarRemotamente(context, msg, false);
-            else
-                CronosUtil.logarRemotamente(context, msg, true);
         }
     }
 
     public static void d(Context context, final String msg, boolean toLogarApenasCartaoMemoria) {
+        CronosUtil.logarRemotamente(context, msg, toLogarApenasCartaoMemoria);
+
         if (shouldBeLogged(DEBUG)) {
             Log.d(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(context, msg, toLogarApenasCartaoMemoria);
         }
     }
 
     // Veja o comentário acima de Logger.d() acima
     public static void i(Context context, final String msg) {
+        if (    msg.indexOf("MainActivity") > -1
+             || msg.indexOf("LoginActivity") > -1
+             || msg.indexOf("CotacaoActivity") > -1
+             || msg.indexOf("OrdemActivity") > -1
+             || msg.indexOf("CronosWebViewClient") > -1
+             || msg.indexOf("MyFirebaseMessagingService") > -1
+           )
+            CronosUtil.logarRemotamente(context, msg, false);
+        else
+            CronosUtil.logarRemotamente(context, msg, true);
+
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
-            if (       msg.indexOf("MainActivity") > -1
-                    || msg.indexOf("LoginActivity") > -1
-                    || msg.indexOf("CotacaoActivity") > -1
-                    || msg.indexOf("OrdemActivity") > -1
-                    || msg.indexOf("CronosWebViewClient") > -1
-                    || msg.indexOf("MyFirebaseMessagingService") > -1
-               )
-                CronosUtil.logarRemotamente(context, msg, false);
-            else
-                CronosUtil.logarRemotamente(context, msg, true);
         }
     }
 
     public static void i(Context context, final String msg, boolean toLogarApenasCartaoMemoria) {
+        CronosUtil.logarRemotamente(context, msg, toLogarApenasCartaoMemoria);
+
         if (shouldBeLogged(INFO)) {
             Log.i(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(context, msg, toLogarApenasCartaoMemoria);
         }
     }
 
     public static void w(Context context, final String msg) {
+        CronosUtil.logarRemotamente(context, msg, true);
+
         if (shouldBeLogged(WARNING)) {
             Log.w(Constants.TAG, msg);
-            CronosUtil.logarRemotamente(context, msg, true);
         }
     }
 
     public static void e(Context context, final Throwable throwable) {
         String msg = "An exception has occurred:\n" + ExceptionUtils.getStackTrace(throwable);
-        Log.e(Constants.TAG, msg);
         CronosUtil.logarRemotamente(context, msg, true);
+        Log.e(Constants.TAG, msg);
     }
 
     public static void e(Context context, final String msg) {
-        Log.e(Constants.TAG, msg);
         CronosUtil.logarRemotamente(context, msg, true);
+        Log.e(Constants.TAG, msg);
     }
 
     public static boolean shouldBeLogged(final Integer level) {

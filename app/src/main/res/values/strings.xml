@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">PCronos Teste</string>
+    <!--<string name="app_name">PCronos Teste</string>-->
     <!--<string name="app_name">PCronos Homolog</string>-->
     <!--<string name="app_name">PCronos Apresent</string>-->
-    <!--<string name="app_name">Portal Cronos</string>-->
+    <string name="app_name">Portal Cronos</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="enter">Entrar</string>
     <string name="cancel">Cancelar</string>

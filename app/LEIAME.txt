@@ -1,4 +1,0 @@
-Signed release APK:
-    - Todas as senhas = cronos
-    - Gerado para todas as versões V1 e V2 de certificação ao mesmo tempo
-      para poder funcionar em Androis "antigos" (4.4.4) e novos

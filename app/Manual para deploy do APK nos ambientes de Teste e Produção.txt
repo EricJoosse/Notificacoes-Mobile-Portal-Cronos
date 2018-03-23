@@ -1,0 +1,24 @@
+Manual para deploy do APK nos ambientes de Teste/Produção
+
+- strings.xml:
+  - descomentar o "app_name" novo e comentar o anterior
+
+- app/build.gradle:
+  - aumentar "versionCode" e "versionName", no caso que se aplica, pois o Google Play não aceita a mesma versão
+  - buildConfigField "ENDPOINT":
+	- alterar o endereço http
+	- alterar a porta 80/81/82
+
+-  app/google-services.json:
+   - Substituir o conteúdo de "google-services-producao.json" ou "google-services-teste.json"
+     por cima do conteúdo de "google-services.json"
+
+- Adroid Studio > Build Variants > mudar debug/release
+  Depois disso fazer um Sync do projeto
+
+- Geração do APK:
+  - no caso de versão debug:   Adroid Studio > Build > Build APK
+  - no caso de versão release: Adroid Studio > Build > Generate Signed APK
+      - Todas as senhas = cronos
+      - Gerado para todas as versões V1 e V2 de certificação ao mesmo tempo
+        para poder funcionar em Androis "antigos" (4.4.4) e novos

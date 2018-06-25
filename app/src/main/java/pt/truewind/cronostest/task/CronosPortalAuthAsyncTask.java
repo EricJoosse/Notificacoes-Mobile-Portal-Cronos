@@ -67,6 +67,18 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
         Logger.d(null, "Authenticating");
 
         try {
+            // O seguinte funciona sincronamente antes do login, então nunca vai ter o risco
+            // que o SwitchToMobile acontece tarde demais resultando em uma tela desktop no APK.
+            // O seguinte executa no primeiro login, e também no autologin.
+            // O seguinte é necessário para direcionar browsers em celulares e tablets para o ambiente
+            // desktop e apenas APK´s para o ambiente mobile.
+            if (this.url.endsWith("DoLogin")) {
+                Logger.d(null, "if (this.url.endsWith(DoLogin)) entrado");
+                RemoteAbstractService serviceAntes = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.SwitchToMobile);
+                serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
+                Logger.d(null, "serviceAntes.performPostCall(SwitchToMobile) passado");
+            }
+
             RemoteAbstractService service = new RemoteAbstractService(this.url);
             response = service.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
             Logger.d(null, "Response Code: " + response);

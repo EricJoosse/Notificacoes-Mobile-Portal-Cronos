@@ -13,6 +13,7 @@ public class Constants {
     public static final String CONTENT_TYPE_FORM_DATA = "application/x-www-form-urlencoded";
     public static final String CONTENT_TYPE_APP_JSON = "application/json";
     public static final String LOGIN_ACCESS = "/v2/ControloAcesso/DoLogin";
+    public static final String SwitchToMobile = "/v2/ControloAcesso/SwitchToMobile";
     //public static final String PRINCIPAL_ENDPOINT = "/principal.aspx#";
     public static final String PRINCIPAL_ENDPOINT = "/v2/#cotacao/consulta?activeTab=2";
     public static final String SECONDARY_ENDPOINT = "/v2/#cotacao/consulta?activeTab=1";

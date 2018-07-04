@@ -39,6 +39,7 @@ public class Logger {
                 || msg.indexOf("OrdemActivity") > -1
                 || msg.indexOf("CronosWebViewClient") > -1
                 || msg.indexOf("MyFirebaseMessagingService") > -1
+                || msg.indexOf("CronosPortalAuthAsyncTask") > -1
            )
             CronosUtil.logarRemotamente(context, msg, false);
         else
@@ -65,6 +66,7 @@ public class Logger {
              || msg.indexOf("OrdemActivity") > -1
              || msg.indexOf("CronosWebViewClient") > -1
              || msg.indexOf("MyFirebaseMessagingService") > -1
+             || msg.indexOf("CronosPortalAuthAsyncTask") > -1
            )
             CronosUtil.logarRemotamente(context, msg, false);
         else

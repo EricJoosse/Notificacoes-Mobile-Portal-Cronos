@@ -64,7 +64,8 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
         boolean status = false;
 
         String response = "";
-        Logger.d(null, "Authenticating");
+        String responseSwitchToMobile = "";
+        Logger.d(null, "CronosPortalAuthAsyncTask: Authenticating");
 
         try {
             // O seguinte funciona sincronamente antes do login, então nunca vai ter o risco
@@ -73,16 +74,16 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
             // O seguinte é necessário para direcionar browsers em celulares e tablets para o ambiente
             // desktop e apenas APK´s para o ambiente mobile.
             if (this.url.endsWith("DoLogin")) {
-                Logger.d(null, "if (this.url.endsWith(DoLogin)) entrado");
+                Logger.d(null, "CronosPortalAuthAsyncTask: if (this.url.endsWith(DoLogin)) entrado");
                 RemoteAbstractService serviceAntes = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.SwitchToMobile);
-                response = serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-                Logger.d(null, "Response Code de SwitchToMobile: " + response);
-                Logger.d(null, "serviceAntes.performPostCall(SwitchToMobile) passado");
+                responseSwitchToMobile = serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
+                Logger.d(null, "CronosPortalAuthAsyncTask: Response Code de SwitchToMobile: " + responseSwitchToMobile);
+                Logger.d(null, "CronosPortalAuthAsyncTask: serviceAntes.performPostCall(SwitchToMobile) passado");
             }
 
             RemoteAbstractService service = new RemoteAbstractService(this.url);
             response = service.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-            Logger.d(null, "Response Code de DoLogin: " + response);
+            Logger.d(null, "CronosPortalAuthAsyncTask: Response Code de DoLogin: " + response);
 
             if (response.contains("No momento o aplicativo para celular")) {
                 status = false;
@@ -98,7 +99,7 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
                 RemoteAbstractService serviceCot = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.COT_ACCESS);
                 Logger.d(null, BuildConfig.ENDPOINT + Constants.COT_ACCESS);
                 response = serviceCot.performPostCall(getPayloadCotacoes(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-                Logger.d(null, "Response Code: " + response);
+                Logger.d(null, "CronosPortalAuthAsyncTask: Response Code de DoLogin: " + response);
 
                 if(response.equals(Constants.LOGIN_OK)) {
                     status = true;
@@ -137,7 +138,7 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
             }
         } catch (Exception e) {
         // displayLoding(false);
-        Logger.e(null, "Error ...");
+        Logger.e(null, "CronosPortalAuthAsyncTask: Error ...");
     }
 
         return status;
@@ -158,14 +159,14 @@ public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
         stringBuilder.append("UserName=").append(this.username)
                         .append("&Password=").append(this.password);
 
-        Logger.d(null, stringBuilder.toString());
+        Logger.d(null, "CronosPortalAuthAsyncTask - getPayload() : " + stringBuilder.toString());
         return stringBuilder.toString();
     }
 
     private String getPayloadCotacoes(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("UserName=").append(this.username);
-        Logger.d(null, stringBuilder.toString());
+        Logger.d(null, "CronosPortalAuthAsyncTask - getPayloadCotacoes() : " + stringBuilder.toString());
         return stringBuilder.toString();
     }
 }

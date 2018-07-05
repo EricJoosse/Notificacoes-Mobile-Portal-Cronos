@@ -59,22 +59,45 @@ public class CronosWebViewClient extends WebViewClient {
     }
 
 
-    @TargetApi(23)
+    @RequiresApi(23)
     @Override
     public void onReceivedError(WebView view, WebResourceRequest request, android.webkit.WebResourceError error) {
-        Logger.d(this.context, "CronosWebViewClient: onReceivedError() entrado: error.getErrorCode() = " + error.getErrorCode());
+        Logger.d(this.context, "CronosWebViewClient: onReceivedError() de Android >= 23 (6.0) entrado");
+        tratarOnReceivedError(view, error.getErrorCode(), error.getDescription().toString(), request.getUrl().toString());
+    }
 
-        if (!SystemUtil.isOnline(this.context)) {
-            view.stopLoading();  // may not be needed
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onReceivedError(WebView view,
+                                int errorCode,
+                                String description,
+                                String failingUrl ) {
+        Logger.d(this.context, "CronosWebViewClient: onReceivedError() de Android < 23 (6.0) entrado");
+        tratarOnReceivedError(view, errorCode, description, failingUrl);
+    }
+
+    private void tratarOnReceivedError(WebView view,
+                                       int errorCode,
+                                       String description,
+                                       String failingUrl ) {
+        Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): errorCode = " + errorCode);
+        Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): description = " + description);
+        Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): failingUrl = " + failingUrl);
+        Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): SystemUtil.isOnline(this.context) = " + SystemUtil.isOnline(this.context));
+        view.stopLoading();  // may not be needed
+
+        if (!SystemUtil.isOnline(this.context) || errorCode == ERROR_CONNECT) {
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
-            ((Activity) this.context).finish();
         }
-        else if (error.getErrorCode() == ERROR_TIMEOUT) {
-            view.stopLoading();  // may not be needed
+        else if (errorCode == ERROR_TIMEOUT) {
             Toast.makeText(this.context, "O Portal Cronos está fora do ar. Favor entrar em contato com o Suporte do Portal Cronos.", Toast.LENGTH_LONG).show();
             // view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
-            ((Activity) this.context).finish();
         }
+        else {
+            Toast.makeText(this.context, description, Toast.LENGTH_LONG).show();
+        }
+        Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError() finalizado");
+        ((Activity) this.context).finish();
     }
 
 

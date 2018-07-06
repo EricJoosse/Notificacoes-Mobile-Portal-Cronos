@@ -80,6 +80,8 @@ public class CronosWebViewClient extends WebViewClient {
                                        int errorCode,
                                        String description,
                                        String failingUrl ) {
+
+        // Observação: as mensagens de debug em tratarOnReceivedError() não têm como chegar no arquivo de log remoto se a Internet cair:
         Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): errorCode = " + errorCode);
         Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): description = " + description);
         Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError(): failingUrl = " + failingUrl);
@@ -87,9 +89,12 @@ public class CronosWebViewClient extends WebViewClient {
         view.stopLoading();  // may not be needed
 
         if (!SystemUtil.isOnline(this.context) || errorCode == ERROR_CONNECT) {
+            // Esta mensagem foi testada que funciona (com Android 7.0). Após a volta do WiFi o APK navega para a tela de login (não faz autologin).
+            // Se fechar o APK e abrir de novo ele faz autologin:
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
         }
         else if (errorCode == ERROR_TIMEOUT) {
+            // Esta mensagem ainda não foi testado:
             Toast.makeText(this.context, "O Portal Cronos está fora do ar. Favor entrar em contato com o Suporte do Portal Cronos.", Toast.LENGTH_LONG).show();
             // view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
         }
@@ -97,6 +102,8 @@ public class CronosWebViewClient extends WebViewClient {
             Toast.makeText(this.context, description, Toast.LENGTH_LONG).show();
         }
         Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError() finalizado");
+
+        // Voltar para a tela de login:
         ((Activity) this.context).finish();
     }
 

@@ -43,7 +43,7 @@ public class CronosWebViewClient extends WebViewClient {
     private ImageView loading;
 
     @Override
-    @TargetApi(21)
+    @RequiresApi(23)
     public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
         Logger.d(this.context, "CronosWebViewClient: onReceivedHttpError() entrado: errorResponse.getStatusCode() - errorResponse.getReasonPhrase()  = " + errorResponse.getStatusCode() + " - " + errorResponse.getReasonPhrase());
 
@@ -119,6 +119,7 @@ public class CronosWebViewClient extends WebViewClient {
     public void onReceivedLoginRequest(WebView view, String realm, String account, String args) {
     }
 
+    @RequiresApi(21)
     @Override
     public void onReceivedClientCertRequest(WebView view, ClientCertRequest request) {
         request.cancel();
@@ -138,34 +139,59 @@ public class CronosWebViewClient extends WebViewClient {
         // Logger.d(this.context, "CronosWebViewClient: onPageFinished() finalizado");
     }
 
-//    @Override
-//    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//
-//        if (url.contains("http://exitme")){
-//            CronosUtil.doLogout();
-//
-//            ((Activity) this.context).finish();
-//            return true;
-//        }
-//
-//        Logger.d(this.context, url);
-//        if( url.startsWith("http:") || url.startsWith("https:") ) {
-//            return false;
-//        }
-//        // Otherwise allow the OS to handle things like tel, mailto, etc.
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//        context.startActivity(intent);
-//        return true;
-//    }
 
+    // Simply calling loadUrl() will NOT trigger shouldOverrideUrlLoading(),
+    // only when a new url is about to be loaded:
+    @RequiresApi(24)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        Logger.d(this.context, "CronosWebViewClient: shouldOverrideUrlLoading() entrado: SystemUtil.isOnline(this.context) = " + SystemUtil.isOnline(this.context));
+        Logger.d(this.context, "CronosWebViewClient: shouldOverrideUrlLoading(WebView view, WebResourceRequest request) de Android >= 24 (7.0) entrado");
+        return  tratarShouldOverrideUrlLoading(view, request.getUrl().toString());
+    }
+
+
+    // Simply calling loadUrl() will NOT trigger shouldOverrideUrlLoading(),
+    // only when a new url is about to be loaded:
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        Logger.d(this.context, "CronosWebViewClient: shouldOverrideUrlLoading(WebView view, String url) de Android < 24 (7.0) entrado");
+        // if (Build.VERSION.SDK_INT < 24) {
+        return  tratarShouldOverrideUrlLoading(view, url);
+        // }
+    }
+
+
+
+    private boolean tratarShouldOverrideUrlLoading(WebView view, String url) {
+        Logger.d(this.context, "CronosWebViewClient: tratarShouldOverrideUrlLoading(): url = " + url);
+        Logger.d(this.context, "CronosWebViewClient: tratarShouldOverrideUrlLoading(): SystemUtil.isOnline(this.context) = " + SystemUtil.isOnline(this.context));
+
         if (SystemUtil.isOnline(this.context)) {
-            // return false to let the WebView handle the URL
-            return false;
-        } else {
-            // show the proper "not connected" message
+            if (url.contains("http://exitme")) {
+                CronosUtil.doLogout();
+                ((Activity) this.context).finish();
+                return true;
+            }
+            else if (url.startsWith("http:") || url.startsWith("https:")) {
+                Logger.d(this.context, "CronosWebViewClient: tratarShouldOverrideUrlLoading() = false");
+                // return false to let the WebView handle the URL:
+                return false;
+                // Alternativo para o caso que "return false" não funciona:
+                // if (Build.VERSION.SDK_INT >= 21) {
+                //     view.loadUrl(request.getUrl().toString());
+                //     return true;
+                // }
+            }
+            else {
+                // Otherwise allow the OS to handle things like tel, mailto, etc:
+                Logger.d(this.context, "CronosWebViewClient: url.startsWith(http(s)) = false, tratarShouldOverrideUrlLoading() = true");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(intent);
+                return true;
+            }
+        }
+        else {
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
             //  view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
             ((Activity) this.context).finish();

@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //register your activity onResume()
+    //@TargetApi(23) // Foi testado que isso não tem nenhum efeito no runtime. Apenas serve para suprimir mensagens
+                     // de compilação, então não serve para nada...
     @Override
     public void onResume() {
         super.onResume();
@@ -142,11 +143,15 @@ public class MainActivity extends AppCompatActivity {
             android.app.NotificationManager mNotificationManager =
                     (android.app.NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            qtdNotificacoesExternasNaoLidas = mNotificationManager.getActiveNotifications().length;
-            Logger.d(this, "MainActivity: onResume(): qtdNotificacoesExternasNaoLidas = " + qtdNotificacoesExternasNaoLidas);
+            // Foi testado que em um Android 22 que se comentar "if (Build.VERSION.SDK_INT >= 23)"
+            // o aplicativo dá erro "Portal Cronos parou" porém nem executa o catch,
+            // então neste caso o try/catch não serve para nada...
+            if (Build.VERSION.SDK_INT >= 23) {
+                qtdNotificacoesExternasNaoLidas = mNotificationManager.getActiveNotifications().length;
+                Logger.d(this, "MainActivity: onResume(): qtdNotificacoesExternasNaoLidas = " + qtdNotificacoesExternasNaoLidas);
+            }
         }
         catch (Exception ex) {
-            // Não fazer nada. No caso de Android < 6.0 vai dar erro pois getActiveNotifications() não existe
             Logger.d(this, "MainActivity: onResume() - catch entrado: ex.getMessage() = " + ex.getMessage());
         }
 

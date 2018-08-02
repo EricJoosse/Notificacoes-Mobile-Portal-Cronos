@@ -168,7 +168,22 @@ public class CronosWebViewClient extends WebViewClient {
         Logger.d(this.context, "CronosWebViewClient: tratarShouldOverrideUrlLoading(): SystemUtil.isOnline(this.context) = " + SystemUtil.isOnline(this.context));
 
         if (SystemUtil.isOnline(this.context)) {
-            if (url.contains("http://exitme")) {
+            // Retirada do ambiente desktop ao voltar do segundo plano para o primeiro plano:
+            // Se a sessão expirar, url = http://www.portalcronos.com.br/V2/ControloAcesso/Login?ReturnUrl=......
+            // que é a tela do ambiente Desktop, indevidamente:
+            if (url.indexOf("Login") > -1) {
+                // Foi testado que o seguinte volta para a activity anterior,
+                // quer dizer para a tela de login,
+                // e foi testado que isso executa onCreate do LoginActivity e faz autologin:
+                ((Activity) this.context).finish();
+
+                // Se isso para de funcionar um dia, fazer o seguinte alternativo:
+                // LoginActivity telaLogin = new LoginActivity();
+                // telaLogin.showLogin();
+
+                return true;
+            }
+            else if (url.contains("http://exitme")) {
                 CronosUtil.doLogout();
                 ((Activity) this.context).finish();
                 return true;

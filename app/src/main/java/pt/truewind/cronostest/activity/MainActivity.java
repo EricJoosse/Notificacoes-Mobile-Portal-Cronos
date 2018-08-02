@@ -21,6 +21,7 @@ import pt.truewind.cronostest.BuildConfig;
 import pt.truewind.cronostest.R;
 import pt.truewind.cronostest.constants.Constants;
 import pt.truewind.cronostest.log.Logger;
+// import pt.truewind.cronostest.service.remote.RemoteAbstractService;
 import pt.truewind.cronostest.task.RegisterUserAppAsyncTask;
 import pt.truewind.cronostest.util.client.CronosWebViewClient;
 import pt.truewind.cronostest.util.ui.AlertPopupDialog;
@@ -205,9 +206,27 @@ public class MainActivity extends AppCompatActivity {
         Logger.d(this, "MainActivity: showNotification(): message = " + message);
     }
 
+    private String getPayload() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("UserName=").append(this.username)
+                .append("&Password=").append(this.password);
+
+        Logger.d(null, "MainActivity - getPayload() : " + stringBuilder.toString());
+        return stringBuilder.toString();
+    }
 
     public void refreshWebView(String endpoint) {
         Logger.d(this, "MainActivity: refreshWebView() entrado.");
+
+        // Retirada do ambiente desktop ao voltar do segundo plano para o primeiro plano:
+        // O seguinte não funcionou e não executou /v2/ControloAcesso/SwitchToMobile:
+        // (porque não???????)
+        // Este problema foi resolvido em outro lugar (CronosWebViewClient - tratarShouldOverrideUrlLoading() )
+     // String responseSwitchToMobile = "";
+     // RemoteAbstractService serviceAntes = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.SwitchToMobile);
+     // responseSwitchToMobile = serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
+     // Logger.d(null, "MainActivity - refreshWebView(): Response Code de SwitchToMobile: " + responseSwitchToMobile);
+     // Logger.d(null, "MainActivity - refreshWebView(): serviceAntes.performPostCall(SwitchToMobile) passado");
 
         // No caso que chegar uma notificação INTERNA de aviso de cotação ou de ordem,
         // atualizar as telas e os indicadores e navegar para a tela onde o usuário estava:

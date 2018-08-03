@@ -58,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
             this.webview.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
 
         this.webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+
+        // Para melhorar a lentidão:
+        if (Build.VERSION.SDK_INT >= 19) {
+            this.webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        }
+        else {
+            this.webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }        this.webview.setFocusable(true);
+
         this.webview.setFocusable(true);
 
         this.loading = (ImageView) findViewById(R.id.loading);
@@ -218,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     public void refreshWebView(String endpoint) {
         Logger.d(this, "MainActivity: refreshWebView() entrado.");
 
-        // Retirada do ambiente desktop ao voltar do segundo plano para o primeiro plano:
+        // Retiração do ambiente desktop ao voltar do segundo plano para o primeiro plano:
         // O seguinte não funcionou e não executou /v2/ControloAcesso/SwitchToMobile:
         // (porque não???????)
         // Este problema foi resolvido em outro lugar (CronosWebViewClient - tratarShouldOverrideUrlLoading() )

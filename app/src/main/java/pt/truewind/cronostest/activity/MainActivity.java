@@ -264,6 +264,10 @@ public class MainActivity extends AppCompatActivity {
                 // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
                 this.webview.reload();
             }
+            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consultaordens") > -1) {
+                // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
+                this.webview.reload();
+            }
             else if (urlAnterior.indexOf("detalheordem") > -1) {
                 // não precisa atualizar nada, pois não tem indicadores nesta tela
             }

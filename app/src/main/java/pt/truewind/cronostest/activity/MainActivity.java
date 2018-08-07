@@ -36,7 +36,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Logger.d(this, "MainActivity: onCreate() entrado.");
+        Logger.d(this, "MainActivity: Versão do APK = h56.apk");
+        try {
+            if (android.os.Environment.getExternalStorageState() == null)
+                Logger.d(this, "MainActivity: statusCartaoMemoria = android.os.Environment.getExternalStorageState() = null");
+            else {
+                Logger.d(this, "MainActivity: statusCartaoMemoria = " + android.os.Environment.getExternalStorageState());
+                if (android.os.Environment.getExternalStorageDirectory() == null)
+                    Logger.d(this, "MainActivity: cartaoMemoria = android.os.Environment.getExternalStorageDirectory() = null");
+                else {
+                    java.io.File cartaoMemoria = android.os.Environment.getExternalStorageDirectory();
+                    Logger.d(this, "MainActivity: cartaoMemoria.getAbsolutePath() = " + cartaoMemoria.getAbsolutePath());
+                }
+            }
+        }
+        catch (Exception ex) {
+            Logger.d(this, "MainActivity: Erro: " + ex.getMessage());
+        }
+
         setContentView(R.layout.activity_main);
 
         SharedPreferences userDetails = this.getSharedPreferences("user", MODE_PRIVATE);

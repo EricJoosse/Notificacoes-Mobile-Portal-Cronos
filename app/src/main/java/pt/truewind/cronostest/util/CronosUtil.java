@@ -4,6 +4,7 @@ package pt.truewind.cronostest.util;
 import android.content.Context;
 import android.os.Build;
 import java.util.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.io.File;
@@ -51,7 +52,7 @@ public class CronosUtil {
                     }
                     Date hoje = new Date();
                     BufferedWriter bWriter = new BufferedWriter(new FileWriter(dir + "/debug." + new SimpleDateFormat("yyyy.MM.dd").format(hoje) + ".log", true));
-                    bWriter.append(mensagem);
+                    bWriter.append((new Timestamp(hoje.getTime())) + ": " + mensagem);
                     bWriter.newLine();
                     bWriter.newLine();
                     bWriter.flush();

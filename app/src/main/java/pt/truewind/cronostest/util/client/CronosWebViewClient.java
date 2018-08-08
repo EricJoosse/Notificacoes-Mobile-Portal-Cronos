@@ -94,7 +94,7 @@ public class CronosWebViewClient extends WebViewClient {
             Toast.makeText(this.context, "A Internet ou o WiFi caiu. Favor tentar mais tarde.", Toast.LENGTH_LONG).show();
         }
         else if (errorCode == ERROR_TIMEOUT) {
-            // Esta mensagem ainda não foi testado:
+            // Foi testado que a seguinte mensagem não aparece (talvez por causa da Activity.finish() depois disso??????):
             Toast.makeText(this.context, "O Portal Cronos está fora do ar. Favor entrar em contato com o Suporte do Portal Cronos.", Toast.LENGTH_LONG).show();
             // view.loadData("A Internet ou o WiFi caiu. Favor tentar mais tarde.", "text/html", "utf-8");
         }
@@ -104,7 +104,14 @@ public class CronosWebViewClient extends WebViewClient {
         Logger.d(this.context, "CronosWebViewClient: tratarOnReceivedError() finalizado");
 
         // Voltar para a tela de login:
-        ((Activity) this.context).finish();
+        LoginActivity telaLogin = new LoginActivity();
+        telaLogin.showLogin();
+        // O seguinte volta para a tela de login, porém infelizmente força o app de volta para o segundo plano,
+        // no caso que o App estava lá e foi clicado para trazer para o primeiro plano,
+        // pelo menos no Android 5.1:
+     // ((Activity) this.context).finish();
+        // Porém parece que "telaLogin = new LoginActivity()" acima também não resolveu isso,
+        // pelo menos no Android 5.1........
     }
 
 

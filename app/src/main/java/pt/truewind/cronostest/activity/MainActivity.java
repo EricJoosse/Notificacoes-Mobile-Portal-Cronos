@@ -247,9 +247,13 @@ public class MainActivity extends AppCompatActivity {
         Logger.d(this, "MainActivity: refreshWebView() entrado.");
 
         // Retiração do ambiente desktop ao voltar do segundo plano para o primeiro plano:
-        // O seguinte não funcionou e não executou /v2/ControloAcesso/SwitchToMobile:
-        // (porque não???????)
-        // Este problema foi resolvido em outro lugar (CronosWebViewClient - tratarShouldOverrideUrlLoading() )
+        // O seguinte não funcionou e não executou /v2/ControloAcesso/SwitchToMobile
+        // pois primeiro isso deveria ser transferido para um novo SwitchToMobileAsyncTask.java,
+        // porém no momento isso cairia na tela de Login Mobile no site que ainda não
+        // existe no site (porém apenas existe neste APK), então na versão atual do site este problema
+        // foi resolvido de outra forma, em outro lugar, veja CronosWebViewClient - tratarShouldOverrideUrlLoading().
+        // Se um dia no futuro o site vai ter uma tela de Login Mobile nova, o seguinte deve
+        // ser descomentado e transferido para um novo SwitchToMobileAsyncTask.java:
      // String responseSwitchToMobile = "";
      // RemoteAbstractService serviceAntes = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.SwitchToMobile);
      // responseSwitchToMobile = serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);

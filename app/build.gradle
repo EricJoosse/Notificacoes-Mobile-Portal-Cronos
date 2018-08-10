@@ -3,6 +3,10 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    defaultPublishConfig "debug" // Necessário para Android Studio < 3 pois no Android Studio 2.3.3 existe um bug
+                                 // que pt.truewind.cronostest.BuildConfig.BUILD_TYPE always tells "release"
+                                 // even if one clicks on debug button and choosing debug as build variant.
+                                 // É necessário para o static constructor de Constants.java poder funcionar.
     defaultConfig {
         applicationId "pt.truewind.cronostest"
         minSdkVersion 15

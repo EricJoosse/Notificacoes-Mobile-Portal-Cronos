@@ -298,6 +298,12 @@ public class MainActivity extends AppCompatActivity {
         else
             this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
 
+        // Teste provocando erro não tratado de propósito:
+        // Resultado: se não tratar, dá erro "Portal Cronos parou"
+        //            se executar o aplicativo novamente, dá erro "Portal Cronos apresenta falhas continuamente"
+     // String test = null;
+     // int u = test.compareTo("aaa");
+
         Logger.d(this, "MainActivity: refreshWebView() finalizado.");
     }
 

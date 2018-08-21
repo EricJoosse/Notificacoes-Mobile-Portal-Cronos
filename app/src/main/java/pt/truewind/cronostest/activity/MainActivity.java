@@ -291,8 +291,10 @@ public class MainActivity extends AppCompatActivity {
                 // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
                 this.webview.reload();
             }
-            else if (urlAnterior.indexOf("detalheordem") > -1) {
-                // não precisa atualizar nada, pois não tem indicadores nesta tela
+            else {
+                // No caso de urlAnterior.indexOf("detalheordem"), "condicoesfornecedor", "mapaoferta", "requisicoes" > -1, etc,
+                // e possivelmente no caso de outras telas novas no futuro,
+                // neste casos não é para atualizar a tela atual, pois não tem indicadores nestas telas
             }
         }
         else

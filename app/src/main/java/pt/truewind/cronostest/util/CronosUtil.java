@@ -25,8 +25,9 @@ import pt.truewind.cronostest.task.LogRemotoAsyncTask;
 import pt.truewind.cronostest.util.ui.AlertPopupDialog;
 
 /**
- * Created by vasco.caetano on 21/11/2016.
+ * Created by Eric Jooosse on 09/11/2017.
  */
+
 public class CronosUtil {
 
     public static void doLogout(){

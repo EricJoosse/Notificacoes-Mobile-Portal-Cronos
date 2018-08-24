@@ -32,8 +32,9 @@ import pt.truewind.cronostest.util.CronosUtil;
 import pt.truewind.cronostest.util.system.SystemUtil;
 
 /**
- * Created by vasco.caetano on 02/11/2016.
+ * Created by Eric Jooosse on 09/11/2017.
  */
+
 public class CronosWebViewClient extends WebViewClient {
 
     private String username;

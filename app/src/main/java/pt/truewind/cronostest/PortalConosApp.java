@@ -1,7 +1,7 @@
 package pt.truewind.cronostest;
 
 /**
- * Created by Eric on 09/11/2017.
+ * Created by Eric Jooosse on 09/11/2017.
  *
  * Referência: https://www.mobomo.com/2011/05/how-to-use-application-object-of-android/
  *

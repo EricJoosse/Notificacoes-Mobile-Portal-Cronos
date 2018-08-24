@@ -17,7 +17,7 @@ import pt.truewind.cronostest.service.remote.RemoteAbstractService;
 import pt.truewind.cronostest.util.CronosUtil;
 
 /**
- * Created by Eric 09/11/2017.
+ * Created by Eric Jooosse on 09/11/2017.
  */
 
 public class LogRemotoAsyncTask extends AbstractAsyncTask {

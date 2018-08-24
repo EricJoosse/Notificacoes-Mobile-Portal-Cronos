@@ -1,8 +1,5 @@
 package pt.truewind.cronostest.constants;
 
-/**
- * Created by vasco.caetano on 02/11/2016.
- */
 public class Constants {
 
     public static final String TAG = "--Cronos--";

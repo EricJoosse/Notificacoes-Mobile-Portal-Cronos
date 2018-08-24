@@ -22,9 +22,6 @@ import pt.truewind.cronostest.service.local.EndpointService;
 import pt.truewind.cronostest.service.remote.RemoteAbstractService;
 import pt.truewind.cronostest.util.ui.AlertPopupDialog;
 
-/**
- * Created by vasco.caetano on 04/11/2016.
- */
 public class CronosPortalAuthAsyncTask extends AbstractAsyncTask{
 
     public interface TaskListener {

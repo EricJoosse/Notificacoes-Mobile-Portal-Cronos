@@ -12,13 +12,13 @@
         android:layout_alignParentStart="true"
         tools:ignore="UselessParent">
 
-        <WebView
+        <pt.truewind.cronostest.util.client.CronosWebView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/webView"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true">
-        </WebView>
+        </pt.truewind.cronostest.util.client.CronosWebView>
 
         <!--ProgressBar
             android:id="@+id/loading"

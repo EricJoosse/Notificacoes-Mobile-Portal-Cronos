@@ -23,6 +23,7 @@ import pt.truewind.cronostest.constants.Constants;
 import pt.truewind.cronostest.log.Logger;
 // import pt.truewind.cronostest.service.remote.RemoteAbstractService;
 import pt.truewind.cronostest.task.RegisterUserAppAsyncTask;
+import pt.truewind.cronostest.util.client.CronosWebView;
 import pt.truewind.cronostest.util.client.CronosWebViewClient;
 import pt.truewind.cronostest.util.ui.AlertPopupDialog;
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences userDetails = this.getSharedPreferences("user", MODE_PRIVATE);
 
-        this.webview = (WebView) findViewById(R.id.webView);
+        this.webview = (CronosWebView) findViewById(R.id.webView);
         this.webview.getSettings().setJavaScriptEnabled(true);
 
         // Testado que no Android 7.0 o APK fica um pouquinho mais rápido se desabilitar hardware acceleration,

@@ -188,12 +188,14 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(mMessageReceiver, new IntentFilter("com.google.firebase.MESSAGING_EVENT"));
 
         Logger.d(this, "MainActivity: onResume(): Constants.tipoNotificacao = " + Constants.tipoNotificacao);
-     // if (qtdNotificacoesExternasNaoLidas > 0) {
+        if (qtdNotificacoesExternasNaoLidas > 0) {
             if (Constants.tipoNotificacao == Constants.NOTIFICACAO_COTACAO)
                 refreshWebView(Constants.SECONDARY_ENDPOINT);
             else if (Constants.tipoNotificacao == Constants.NOTIFICACAO_ORDEM)
                 refreshWebView(Constants.PRINCIPAL_ENDPOINT);
-     // }
+        }
+        else
+            refreshWebView("onResume");
 
         Logger.d(this, "MainActivity: onResume() finalizado.");
     }
@@ -245,69 +247,91 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshWebView(String endpoint) {
-        Logger.d(this, "MainActivity: refreshWebView() entrado.");
+        try {
+            Logger.d(this, "MainActivity: refreshWebView() entrado.");
 
-        // Retiração do ambiente desktop ao voltar do segundo plano para o primeiro plano:
-        // O seguinte não funcionou e não executou /v2/ControloAcesso/SwitchToMobile
-        // pois primeiro isso deveria ser transferido para um novo SwitchToMobileAsyncTask.java,
-        // porém no momento isso cairia na tela de Login Mobile no site que ainda não
-        // existe no site (porém apenas existe neste APK), então na versão atual do site este problema
-        // foi resolvido de outra forma, em outro lugar, veja CronosWebViewClient - tratarShouldOverrideUrlLoading().
-        // Se um dia no futuro o site vai ter uma tela de Login Mobile nova, o seguinte deve
-        // ser descomentado e transferido para um novo SwitchToMobileAsyncTask.java:
-     // String responseSwitchToMobile = "";
-     // RemoteAbstractService serviceAntes = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.SwitchToMobile);
-     // responseSwitchToMobile = serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
-     // Logger.d(null, "MainActivity - refreshWebView(): Response Code de SwitchToMobile: " + responseSwitchToMobile);
-     // Logger.d(null, "MainActivity - refreshWebView(): serviceAntes.performPostCall(SwitchToMobile) passado");
+            // Retiração do ambiente desktop ao voltar do segundo plano para o primeiro plano:
+            // O seguinte não funcionou e não executou /v2/ControloAcesso/SwitchToMobile
+            // pois primeiro isso deveria ser transferido para um novo SwitchToMobileAsyncTask.java,
+            // porém no momento isso cairia na tela de Login Mobile no site que ainda não
+            // existe no site (porém apenas existe neste APK), então na versão atual do site este problema
+            // foi resolvido de outra forma, em outro lugar, veja CronosWebViewClient - tratarShouldOverrideUrlLoading().
+            // Se um dia no futuro o site vai ter uma tela de Login Mobile nova, o seguinte deve
+            // ser descomentado e transferido para um novo SwitchToMobileAsyncTask.java:
+         // String responseSwitchToMobile = "";
+         // RemoteAbstractService serviceAntes = new RemoteAbstractService(BuildConfig.ENDPOINT + Constants.SwitchToMobile);
+         // responseSwitchToMobile = serviceAntes.performPostCall(getPayload(), Constants.CONTENT_TYPE_FORM_DATA, Constants.POST);
+         // Logger.d(null, "MainActivity - refreshWebView(): Response Code de SwitchToMobile: " + responseSwitchToMobile);
+         // Logger.d(null, "MainActivity - refreshWebView(): serviceAntes.performPostCall(SwitchToMobile) passado");
 
-        // No caso que chegar uma notificação INTERNA de aviso de cotação ou de ordem,
-        // atualizar as telas e os indicadores e navegar para a tela onde o usuário estava:
-        if (endpoint.equals("onReceive")) {
-            String urlAnterior = this.webview.getUrl().toLowerCase();
-            Logger.d(this, "urlAnterior = " + urlAnterior);
+            String urlAnterior = null;
+            if (this.webview != null && this.webview.getUrl() != null)
+                urlAnterior = this.webview.getUrl().toLowerCase();
 
-            if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=1") > -1) {
-                // O seguinte funciona, provavelmente por causa de this.webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE) no onCreate():
-                this.webview.reload();
+            Logger.d(this, "MainActivity - refreshWebView(): urlAnterior = " + urlAnterior);
 
-                // Se precisar alterar a configuração do cache no futuro, o refresh provavelmente
-                // não vai funcionar mais usando webview.reload() pois a URL é a mesma.
+            // No caso que chegar uma notificação INTERNA de aviso de cotação ou de ordem,
+            // atualizar as telas e os indicadores e navegar para a tela onde o usuário estava:
+            if (endpoint.equals("onReceive") && urlAnterior != null) {
+                if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=1") > -1) {
+                    // O seguinte funciona, provavelmente por causa de this.webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE) no onCreate():
+                    this.webview.reload();
 
-                // Nem o seguinte vai funcionar mais, provavelmente: this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT);
+                    // Se precisar alterar a configuração do cache no futuro, o refresh provavelmente
+                    // não vai funcionar mais usando webview.reload() pois a URL é a mesma.
 
-                // Alternativos:
-                // this.webview.loadUrl("javascript:window.location.reload(true)");
+                    // Nem o seguinte vai funcionar mais, provavelmente: this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT);
 
-                // Ou:
-                // String urlNovo = BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random()));
-                // Logger.d(this, "urlNovo = " + urlNovo);
-                // this.webview.loadUrl(urlNovo);
+                    // Alternativos:
+                    // this.webview.loadUrl("javascript:window.location.reload(true)");
+
+                    // Ou:
+                    // String urlNovo = BuildConfig.ENDPOINT + Constants.SECONDARY_ENDPOINT + "&dummy=" + Long.toString(Math.round(Math.random()));
+                    // Logger.d(this, "urlNovo = " + urlNovo);
+                    // this.webview.loadUrl(urlNovo);
+                }
+                else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=2") > -1) {
+                    // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
+                    this.webview.reload();
+                }
+                else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consultaordens") > -1) {
+                    // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
+                    this.webview.reload();
+                }
+                else {
+                    // No caso de urlAnterior.indexOf("detalheordem"), "condicoesfornecedor", "mapaoferta", "requisicoes" > -1, etc,
+                    // e possivelmente no caso de outras telas novas no futuro,
+                    // neste casos não é para atualizar a tela atual, pois não tem indicadores nestas telas
+                }
             }
-            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=2") > -1) {
-                // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
-                this.webview.reload();
-            }
-            else if (urlAnterior.indexOf("cotacao") > -1 && urlAnterior.indexOf("consultaordens") > -1) {
-                // Veja a comentário acima, substituindo Constants.SECONDARY_ENDPOINT por Constants.PRINCIPAL_ENDPOINT
-                this.webview.reload();
-            }
-            else {
-                // No caso de urlAnterior.indexOf("detalheordem"), "condicoesfornecedor", "mapaoferta", "requisicoes" > -1, etc,
-                // e possivelmente no caso de outras telas novas no futuro,
-                // neste casos não é para atualizar a tela atual, pois não tem indicadores nestas telas
-            }
+            else if (endpoint.equals("onResume") && urlAnterior != null) {
+                if (urlAnterior.indexOf("cotacao") > -1 &&
+                             (     (urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=1") > -1)
+                                || (urlAnterior.indexOf("consulta") > -1 && urlAnterior.indexOf("activetab=2") > -1)
+                                || (urlAnterior.indexOf("consultaordens") > -1)
+                             )
+                    ) {
+                    this.webview.reload();
+                }
+                else {
+                    // No caso de urlAnterior.indexOf("detalheordem"), "condicoesfornecedor", "mapaoferta", "requisicoes" > -1, etc,
+                    // e possivelmente no caso de outras telas novas no futuro,
+                    // neste casos não é para atualizar a tela atual, pois não tem indicadores nestas telas
+                }
+            } else
+                this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
+
+            // Teste provocando erro não tratado de propósito:
+            // Resultado: se não tratar, dá erro "Portal Cronos parou"
+            //            se executar o aplicativo novamente, dá erro "Portal Cronos apresenta falhas continuamente"
+         // String test = null;
+         // int u = test.compareTo("aaa");
+
+            Logger.d(this, "MainActivity: refreshWebView() finalizado.");
         }
-        else
-            this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
-
-        // Teste provocando erro não tratado de propósito:
-        // Resultado: se não tratar, dá erro "Portal Cronos parou"
-        //            se executar o aplicativo novamente, dá erro "Portal Cronos apresenta falhas continuamente"
-     // String test = null;
-     // int u = test.compareTo("aaa");
-
-        Logger.d(this, "MainActivity: refreshWebView() finalizado.");
+        catch (Exception ex) {
+            Logger.d(this, "MainActivity - refreshWebView(): Erro: " + ex.getMessage());
+        }
     }
 
 }

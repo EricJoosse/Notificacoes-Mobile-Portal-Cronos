@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     java.io.File cartaoMemoria = android.os.Environment.getExternalStorageDirectory();
                     Logger.d(this, "MainActivity: cartaoMemoria.getAbsolutePath() = " + cartaoMemoria.getAbsolutePath());
+
+                    // Verificar se o APK consegue pelo menos LER diretórios e arquivos no cartão de memória no celular atual:
+                    for (final java.io.File file : cartaoMemoria.listFiles()) {
+                        if (file.isDirectory())
+                            Logger.d(this, "MainActivity: file.getName() = " + file.getName());
+                    }
                 }
             }
         }

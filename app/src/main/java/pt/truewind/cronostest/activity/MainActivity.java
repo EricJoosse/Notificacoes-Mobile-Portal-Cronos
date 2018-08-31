@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences userDetails = this.getSharedPreferences("user", MODE_PRIVATE);
 
+     // this.webview = (WebView) findViewById(R.id.webView);
         this.webview = (CronosWebView) findViewById(R.id.webView);
         this.webview.getSettings().setJavaScriptEnabled(true);
 
@@ -324,7 +325,11 @@ public class MainActivity extends AppCompatActivity {
                     // e possivelmente no caso de outras telas novas no futuro,
                     // neste casos não é para atualizar a tela atual, pois não tem indicadores nestas telas
                 }
-            } else
+            }
+            else if (endpoint.equals("onResume") && urlAnterior == null) {
+                this.webview.loadUrl(BuildConfig.ENDPOINT + Constants.PRINCIPAL_ENDPOINT);
+            }
+            else
                 this.webview.loadUrl(BuildConfig.ENDPOINT + endpoint);
 
             // Teste provocando erro não tratado de propósito:

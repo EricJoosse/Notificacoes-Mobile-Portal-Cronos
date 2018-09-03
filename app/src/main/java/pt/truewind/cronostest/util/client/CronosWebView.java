@@ -26,15 +26,18 @@ public class CronosWebView extends WebView {
         /* any initialisation works here */
     }
 
-    // O seguinte override não funcionou com Android 7.0: o teclado Android aparece numérico,
-    // como deveria para 90 % dos campos, porém não exibe nenhuma opção para mudar o teclado
-    // para alfabético no caso de campos texto:
-//    @Override
-//    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-//        InputConnection ic = super.onCreateInputConnection(outAttrs);
-//     // Alterar teclado Android para default numérico:
-//        outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;
-//        return ic;
-//    }
+    @Override
+    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+        InputConnection ic = super.onCreateInputConnection(outAttrs);
+
+        // O seguinte não funcionou com Android 7.0: o teclado Android fica numérico,
+        // como deveria para 90 % dos campos, porém não exibe nenhuma tecla para mudar o teclado
+        // para alfanumérico no caso de campos texto. A solução melhor é usar HTML5 alterando
+        // <input type="text"/> para <input type="number"/>. Foi testado que Android usa isso
+        // para decidir o tipo de teclado automaticamente:
+    //  outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;
+
+        return ic;
+    }
 
 }

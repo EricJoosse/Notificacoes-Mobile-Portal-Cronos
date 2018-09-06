@@ -37,6 +37,7 @@ public class Logger {
                 || msg.indexOf("LoginActivity") > -1
                 || msg.indexOf("CotacaoActivity") > -1
                 || msg.indexOf("OrdemActivity") > -1
+                || msg.indexOf("CronosWebView") > -1
                 || msg.indexOf("CronosWebViewClient") > -1
                 || msg.indexOf("MyFirebaseMessagingService") > -1
                 || msg.indexOf("CronosPortalAuthAsyncTask") > -1
@@ -64,6 +65,7 @@ public class Logger {
              || msg.indexOf("LoginActivity") > -1
              || msg.indexOf("CotacaoActivity") > -1
              || msg.indexOf("OrdemActivity") > -1
+             || msg.indexOf("CronosWebView") > -1
              || msg.indexOf("CronosWebViewClient") > -1
              || msg.indexOf("MyFirebaseMessagingService") > -1
              || msg.indexOf("CronosPortalAuthAsyncTask") > -1

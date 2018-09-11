@@ -1,4 +1,8 @@
-Manual para deploy do APK nos ambientes de Teste/Produção
+Checklist para deploy do APK nos ambientes de Produção/Homologação/Apresentação/Teste
+=====================================================================================
+
+- Constants.java:
+  - Alterar a chave VERSAO_APK (exemplos: PCronos1.6.debug.apk, PCronos1.6.release.apk, H68.apk, A68.apk)
 
 - strings.xml:
   - descomentar o "app_name" novo e comentar o anterior

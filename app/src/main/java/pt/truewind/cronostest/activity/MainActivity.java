@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Logger.d(this, "MainActivity: onCreate() entrado.");
-        Logger.d(this, "MainActivity: Versão do APK = h56.apk");
+
         try {
             if (android.os.Environment.getExternalStorageState() == null)
                 Logger.d(this, "MainActivity: statusCartaoMemoria = android.os.Environment.getExternalStorageState() = null");

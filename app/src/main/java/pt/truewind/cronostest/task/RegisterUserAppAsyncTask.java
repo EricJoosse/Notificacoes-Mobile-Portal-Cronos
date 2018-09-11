@@ -66,6 +66,7 @@ public class RegisterUserAppAsyncTask extends AbstractAsyncTask {
         //  tokenJSON.put("versaoAndroid", Integer.toString(Build.VERSION.SDK_INT));
             tokenJSON.put("versaoAndroid", pt.truewind.cronostest.util.CronosUtil.getDescricaoAbreviadaVersaoAndroid(Build.VERSION.SDK_INT));
             tokenJSON.put("modeloMobile", Build.BRAND + "." + Build.MODEL);
+            tokenJSON.put("versaoAPK", Constants.VERSAO_APK);
         } catch (JSONException e) {
             Logger.e(null, "Can´t format JSON");
         }

@@ -59,6 +59,7 @@ public class LogRemotoAsyncTask extends AbstractAsyncTask {
                 tokenJSON.put("userName", endpoint.getUsername());
                 tokenJSON.put("versaoAndroid", pt.truewind.cronostest.util.CronosUtil.getDescricaoAbreviadaVersaoAndroid(Build.VERSION.SDK_INT));
                 tokenJSON.put("modeloMobile", Build.BRAND + "." + Build.MODEL);
+                tokenJSON.put("versaoAPK", Constants.VERSAO_APK);
                 tokenJSON.put("tokenId", endpoint.getToken());
                 tokenJSON.put("linhaArqLog", this.mensagem);
                 String url = BuildConfig.ENDPOINT + Constants.LOG_REMOTO;

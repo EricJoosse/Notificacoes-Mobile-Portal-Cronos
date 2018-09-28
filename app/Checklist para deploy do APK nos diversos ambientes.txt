@@ -1,6 +1,15 @@
 Checklist para deploy do APK nos ambientes de Produção/Homologação/Apresentação/Teste
 =====================================================================================
 
+- AndroidManifest.xml:
+  (i) no caso de versão release: remover:
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+  (ii) no caso de versão debug: adicionar depois de <uses-permission android:name="android.permission.INTERNET" />:
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 - Constants.java:
   - Alterar a chave VERSAO_APK (exemplos: PCronos1.6.debug.apk, PCronos1.6.release.apk, H68.apk, A68.apk)
 

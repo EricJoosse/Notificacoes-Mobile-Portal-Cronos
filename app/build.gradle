@@ -11,8 +11,8 @@ android {
         applicationId "pt.truewind.cronostest"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 8
-        versionName "2.0"
+        versionCode 9
+        versionName "2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

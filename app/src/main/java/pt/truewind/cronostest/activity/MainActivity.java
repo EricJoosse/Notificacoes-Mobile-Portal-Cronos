@@ -40,27 +40,30 @@ public class MainActivity extends AppCompatActivity {
 
         Logger.d(this, "MainActivity: onCreate() entrado.");
 
-        try {
-            if (android.os.Environment.getExternalStorageState() == null)
-                Logger.d(this, "MainActivity: statusCartaoMemoria = android.os.Environment.getExternalStorageState() = null");
-            else {
-                Logger.d(this, "MainActivity: statusCartaoMemoria = " + android.os.Environment.getExternalStorageState());
-                if (android.os.Environment.getExternalStorageDirectory() == null)
-                    Logger.d(this, "MainActivity: cartaoMemoria = android.os.Environment.getExternalStorageDirectory() = null");
+        if (pt.truewind.cronostest.BuildConfig.BUILD_TYPE.equals("debug"))
+        {
+            try {
+                if (android.os.Environment.getExternalStorageState() == null)
+                    Logger.d(this, "MainActivity: statusCartaoMemoria = android.os.Environment.getExternalStorageState() = null");
                 else {
-                    java.io.File cartaoMemoria = android.os.Environment.getExternalStorageDirectory();
-                    Logger.d(this, "MainActivity: cartaoMemoria.getAbsolutePath() = " + cartaoMemoria.getAbsolutePath());
+                    Logger.d(this, "MainActivity: statusCartaoMemoria = " + android.os.Environment.getExternalStorageState());
+                    if (android.os.Environment.getExternalStorageDirectory() == null)
+                        Logger.d(this, "MainActivity: cartaoMemoria = android.os.Environment.getExternalStorageDirectory() = null");
+                    else {
+                        java.io.File cartaoMemoria = android.os.Environment.getExternalStorageDirectory();
+                        Logger.d(this, "MainActivity: cartaoMemoria.getAbsolutePath() = " + cartaoMemoria.getAbsolutePath());
 
-                    // Verificar se o APK consegue pelo menos LER diretórios e arquivos no cartão de memória no celular atual:
-                    for (final java.io.File file : cartaoMemoria.listFiles()) {
-                        if (file.isDirectory())
-                            Logger.d(this, "MainActivity: file.getName() = " + file.getName());
+                        // Verificar se o APK consegue pelo menos LER diretórios e arquivos no cartão de memória no celular atual:
+                        for (final java.io.File file : cartaoMemoria.listFiles()) {
+                            if (file.isDirectory())
+                                Logger.d(this, "MainActivity: file.getName() = " + file.getName());
+                        }
                     }
                 }
             }
-        }
-        catch (Exception ex) {
-            Logger.d(this, "MainActivity: Erro: " + ex.getMessage());
+            catch (Exception ex) {
+                Logger.d(this, "MainActivity - Depuração do cartão de Memória: Erro: " + ex.getMessage());
+            }
         }
 
         setContentView(R.layout.activity_main);

@@ -16,7 +16,7 @@ public class Constants {
     public static final String SECONDARY_ENDPOINT = "/v2/#cotacao/consulta?activeTab=1";
     public static final String TOKEN_ACCESS = "/v2/ControloAcesso/GetTokenDeviceidNovo";
     public static final String LOG_REMOTO = "/v2/ControloAcesso/LogMobileNovo";
-    public static final String VERSAO_APK = "H69.apk";
+    public static final String VERSAO_APK = "PCronos2.1.apk";
     public static final String LOGOUT = "/v2/ControloAcesso/Login";
     public static final String LOGIN_OK = "{\"Login\":\"OK\"}";
     public static final String CHANGE_PASSWORD_OK = "{\"Login\": \"Senha alterada com sucesso!\"}";

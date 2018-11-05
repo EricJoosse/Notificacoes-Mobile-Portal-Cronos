@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "25.0.2"
     defaultPublishConfig "debug" // Necessário para Android Studio < 3 pois no Android Studio 2.3.3 existe um bug
                                  // que pt.truewind.cronostest.BuildConfig.BUILD_TYPE always tells "release"
@@ -11,8 +11,8 @@ android {
         applicationId "pt.truewind.cronostest"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 10
-        versionName "2.2"
+        versionCode 11
+        versionName "2.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -38,7 +38,12 @@ android {
 }
 
 repositories {
-    mavenCentral() // jcenter() works as well because it pulls from Maven Central
+    // Foi testado que o Android Studio 3.2.1 está com um bug que
+    // ele NÃO usa os repositories no build.gradle do módulo
+    // porém apenas usa os repositories no build.gradle geral:
+    // maven { url 'https://maven.google.com' }
+    // google()
+    // mavenCentral() // jcenter() works as well because it pulls from Maven Central
 }
 
 dependencies {
@@ -46,11 +51,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.firebase:firebase-messaging:10.2.1'
     testCompile 'junit:junit:4.12'

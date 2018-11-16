@@ -19,7 +19,7 @@ Checklist para deploy do APK nos ambientes de Produção/Homologação/Apresenta
 - app/build.gradle:
   - aumentar "versionCode" e "versionName", no caso que se aplica, pois o Google Play não aceita a mesma versão
   - buildConfigField "ENDPOINT":
-	- alterar o endereço http
+	- alterar o endereço http/https
 	- alterar a porta 80/81/82
 
 -  app/google-services.json:

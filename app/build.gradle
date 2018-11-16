@@ -20,19 +20,29 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "int", "LOGGER_LEVEL", "0"
-            buildConfigField "String", "ENDPOINT", '\"http://www.portalcronos.com.br\"'
-            // Produção: www.portalcronos.com.br (era portalcronos-teste.eastus.cloudapp.azure.com:81, antes era 52.170.47.238:80),
-            // Teste:    portalcronos-teste.eastus.cloudapp.azure.com:80 (era 52.170.47.238:80),
-            // Outras:   www.portalcronos.com.br:81, www.portalcronos.com.br:82 , Produção = 52.170.47.238:81 ( = no futuro www.portalcronos.com.br)
+            buildConfigField "String", "ENDPOINT", '\"https://www.applysolutions.com.br\"'
+                                                   // https - Produção:     https://www.portalcronos.com.br
+                                                   // https - Teste:        https://www.applysolutions.com.br
+                                                   // https - Homologação:  https://www.portalcronos.com.br:444?????
+                                                   // https - Apresentação: https://www.portalcronos.com.br:445?????
+                                                   // http - Produção:      http://www.portalcronos.com.br (era http://portalcronos-teste.eastus.cloudapp.azure.com:81, antes era http://52.170.47.238:81)
+                                                   // http - Teste:         http://portalcronos-teste.eastus.cloudapp.azure.com:80 (era http://52.170.47.238:80)
+                                                   // http - Homologação:   http://www.portalcronos.com.br:81
+                                                   // http - Apresentação:  http://www.portalcronos.com.br:82
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             buildConfigField "int", "LOGGER_LEVEL", "0"
-            buildConfigField "String", "ENDPOINT", '\"http://www.portalcronos.com.br\"'
-            // Produção: www.portalcronos.com.br (era portalcronos-teste.eastus.cloudapp.azure.com:81, antes era 52.170.47.238:80),
-            // Teste:    portalcronos-teste.eastus.cloudapp.azure.com:80 (era 52.170.47.238:80),
-            // Outras:   www.portalcronos.com.br:81, www.portalcronos.com.br:82 , Produção = 52.170.47.238:81 ( = no futuro www.portalcronos.com.br)
+            buildConfigField "String", "ENDPOINT", '\"https://www.applysolutions.com.br\"'
+                                                   // https - Produção:     https://www.portalcronos.com.br
+                                                   // https - Teste:        https://www.applysolutions.com.br
+                                                   // https - Homologação:  https://www.portalcronos.com.br:444?????
+                                                   // https - Apresentação: https://www.portalcronos.com.br:445?????
+                                                   // http - Produção:      http://www.portalcronos.com.br (era http://portalcronos-teste.eastus.cloudapp.azure.com:81, antes era http://52.170.47.238:81)
+                                                   // http - Teste:         http://portalcronos-teste.eastus.cloudapp.azure.com:80 (era http://52.170.47.238:80)
+                                                   // http - Homologação:   http://www.portalcronos.com.br:81
+                                                   // http - Apresentação:  http://www.portalcronos.com.br:82
         }
     }
 }

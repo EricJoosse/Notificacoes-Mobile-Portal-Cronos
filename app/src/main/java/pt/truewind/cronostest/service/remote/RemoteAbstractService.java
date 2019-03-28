@@ -38,36 +38,67 @@ public class RemoteAbstractService {
         try {
             url = new URL(this.server);
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(30000);
-            conn.setConnectTimeout(30000);
-            conn.setRequestMethod(requestMethod);
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            conn.setRequestProperty("content-type", contentType);
+            if (this.server.indexOf("http://") > -1) {
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(30000);
+                conn.setConnectTimeout(30000);
+                conn.setRequestMethod(requestMethod);
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setRequestProperty("content-type", contentType);
 
 
-            byte[] outputBytes = payload.getBytes("UTF-8");
-            OutputStream os = conn.getOutputStream();
-            os.write(outputBytes);
+                byte[] outputBytes = payload.getBytes("UTF-8");
+                OutputStream os = conn.getOutputStream();
+                os.write(outputBytes);
 
-            int responseCode = conn.getResponseCode();
-            // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
-       //   Logger.d(null, "Response Meassage: " + conn.getResponseMessage());
-
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                String line;
-                BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                while ((line=br.readLine()) != null) {
-                    response += line;
-                }
+                int responseCode = conn.getResponseCode();
                 // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
-            //  Logger.e(null, "COOKIE: " + conn.getHeaderField("Set-Cookie"));
-                this.cookieManager.setCookie(this.server, conn.getHeaderField("Set-Cookie"));
-            }
-            else {
-                response="";
+                // Logger.d(null, "Response Meassage: " + conn.getResponseMessage());
 
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    String line;
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    while ((line = br.readLine()) != null) {
+                        response += line;
+                    }
+                    // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
+                    //  Logger.e(null, "COOKIE: " + conn.getHeaderField("Set-Cookie"));
+                    this.cookieManager.setCookie(this.server, conn.getHeaderField("Set-Cookie"));
+                } else {
+                    response = "";
+                }
+            }
+            else if (this.server.indexOf("https://") > -1) {
+                HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                conn.setReadTimeout(30000);
+                conn.setConnectTimeout(30000);
+                conn.setRequestMethod(requestMethod);
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setRequestProperty("content-type", contentType);
+
+
+                byte[] outputBytes = payload.getBytes("UTF-8");
+                OutputStream os = conn.getOutputStream();
+                os.write(outputBytes);
+
+                int responseCode = conn.getResponseCode();
+                // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
+                // Logger.d(null, "Response Meassage: " + conn.getResponseMessage());
+
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
+                    String line;
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    while ((line = br.readLine()) != null) {
+                        response += line;
+                    }
+                    // Se descomentar o seguinte, tomar providências para evitar laços infinitos:
+                    //  Logger.e(null, "COOKIE: " + conn.getHeaderField("Set-Cookie"));
+                    this.cookieManager.setCookie(this.server, conn.getHeaderField("Set-Cookie"));
+                } else {
+                    response = "";
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

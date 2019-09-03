@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText newPassword;
     private EditText confirmPassword;
     private Button loginButton;
+    private TextView esqueceuSenhaLink;
     private ImageView loading;
     //private ProgressBar loading;
     private LinearLayout userBox;
@@ -101,6 +103,8 @@ public class LoginActivity extends AppCompatActivity {
         this.passwordBox = (LinearLayout) findViewById(R.id.pswdBox);
         this.newPasswordBox = (LinearLayout) findViewById(R.id.newPswdBox);
         this.confirmPasswordBox = (LinearLayout) findViewById(R.id.confirmPswdBox);
+        this.esqueceuSenhaLink = (TextView) findViewById(R.id.esqueceuSenhaLink);
+        this.esqueceuSenhaLink.setPaintFlags(this.esqueceuSenhaLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         newPasswordBox.setVisibility(View.GONE);
         confirmPasswordBox.setVisibility(View.GONE);
@@ -175,6 +179,17 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         }
+
+        if (esqueceuSenhaLink != null)
+        {
+            esqueceuSenhaLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    validarEsqueceuSenha(username.getText().toString(), "", getString(R.string.certeza_provisoria), LoginActivity.this);
+                }
+            });
+        }
+
         Logger.d(this, "LoginActivity: onCreate finalizado.");
     }
 
@@ -590,11 +605,30 @@ public class LoginActivity extends AppCompatActivity {
         Logger.d(this, "LoginActivity: newPasswordforSure() finalizado");
     }
 
+    public void validarEsqueceuSenha(final String username, String title, String message, final Activity activity) {
+        if (!SystemUtil.isOnline(this)) {
+            Logger.d(this, "LoginActivity - esqueceuSenhaLink.onClick(): No internet connection!");
+            showError(getString(R.string.login_failed), getString(R.string.no_internet_connection));
+            showLogin();
+            return;
+        }
+        else if (username == null || username.isEmpty()) {
+            showError(getString(R.string.login_failed), getString(R.string.fill_username));
+            showLogin();
+            return;
+        }
+        else {
+            showProgressBar();
+            newPasswordforSure(username, title, message, activity);
+        }
+    }
+
     public void showProgressBar(){
         loading.setVisibility(View.VISIBLE);
         userBox.setVisibility(View.GONE);
         passwordBox.setVisibility(View.GONE);
         loginButton.setVisibility(View.GONE);
+        esqueceuSenhaLink.setVisibility(View.GONE);
         newPasswordBox.setVisibility(View.GONE);
         confirmPasswordBox.setVisibility(View.GONE);
     }
@@ -604,6 +638,7 @@ public class LoginActivity extends AppCompatActivity {
         userBox.setVisibility(View.VISIBLE);
         passwordBox.setVisibility(View.VISIBLE);
         loginButton.setVisibility(View.VISIBLE);
+        esqueceuSenhaLink.setVisibility(View.VISIBLE);
         newPasswordBox.setVisibility(View.GONE);
         confirmPasswordBox.setVisibility(View.GONE);
     }
@@ -612,6 +647,7 @@ public class LoginActivity extends AppCompatActivity {
         newPasswordBox.setVisibility(View.VISIBLE);
         confirmPasswordBox.setVisibility(View.VISIBLE);
         loginButton.setVisibility(View.VISIBLE);
+        esqueceuSenhaLink.setVisibility(View.GONE);
         loading.setVisibility(View.GONE);
         userBox.setVisibility(View.GONE);
         passwordBox.setVisibility(View.GONE);

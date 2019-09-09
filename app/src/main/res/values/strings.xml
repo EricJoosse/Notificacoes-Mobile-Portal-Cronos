@@ -20,7 +20,7 @@
     <string name="confirm">Confirmar</string>
     <string name="senha_provisoria">Se esqueceu a senha, clique em "Confirmar" para gerar uma nova senha provisória</string>
     <string name="password_to_email">Senha provisória atribuída e enviada para seu e-mail, com sucesso!</string>
-    <string name="error_provisional">Envio da senha provisória deu erro!</string>
+    <string name="error_provisional">Este Usuário não existe!</string>
     <string name="certeza_provisoria">Tem a certeza que deseja atribuir uma nova senha provisória?</string>
     <string name="fill_new_password">Informe a nova senha</string>
     <string name="password_6_digits">A nova senha precisa conter no mínimo 6 dígitos</string>

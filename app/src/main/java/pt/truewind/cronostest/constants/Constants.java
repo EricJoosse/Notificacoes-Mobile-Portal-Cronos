@@ -14,7 +14,7 @@ public class Constants {
     //public static final String PRINCIPAL_ENDPOINT = "/principal.aspx#";
     public static final String PRINCIPAL_ENDPOINT = "/v2/#cotacao/consulta?activeTab=2";
     public static final String SECONDARY_ENDPOINT = "/v2/#cotacao/consulta?activeTab=1";
-    public static final String TOKEN_ACCESS = "/v2/ControloAcesso/GetTokenDeviceidNovo";
+    public static final String TOKEN_ACCESS = "/v2/ControloAcesso/GetTokenDeviceComCelularId";
     public static final String LOG_REMOTO = "/v2/ControloAcesso/LogMobileNovo";
     public static final String VERSAO_APK = "PCronos2.3.apk";
     public static final String LOGOUT = "/v2/ControloAcesso/Login";

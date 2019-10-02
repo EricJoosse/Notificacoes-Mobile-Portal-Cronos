@@ -112,6 +112,7 @@ public class CronosUtil {
             case 25: return "Android 7.1.1";
             case 26: return "Android 8.0";
             case 27: return "Android 8.1";
+            case 28: return "Android 9.0";
             case 10000: return "Current Development Android Version";
             default: return "Versão Android Desconhecida";
         }

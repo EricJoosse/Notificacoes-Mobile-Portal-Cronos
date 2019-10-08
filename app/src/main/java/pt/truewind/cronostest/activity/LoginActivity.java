@@ -634,6 +634,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void showLogin(){
+
+        // Tentativa para resolver o bug em celulares Android 9.0: não está sincronizando as teclas do teclado
+        // com o conteúdo dos campos "Usuário" e "Senha" após a digitação de cada tecla.
+        // Nos outros campos "Nova Senha" e "Confirmar Senha" funciona.
+        // Testei no emulador Android que este bug não acontece com Android 7 e 8.
+        // Até a seguinte gambiarra não deu certo:
+        if (Build.VERSION.SDK_INT == 28) {
+            userBox.setVisibility(View.GONE);
+            passwordBox.setVisibility(View.GONE);
+        }
+
         loading.setVisibility(View.GONE);
         userBox.setVisibility(View.VISIBLE);
         passwordBox.setVisibility(View.VISIBLE);

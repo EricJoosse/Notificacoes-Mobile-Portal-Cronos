@@ -645,7 +645,7 @@ public class LoginActivity extends AppCompatActivity {
             passwordBox.setVisibility(View.GONE);
         }
 
-        loading.setVisibility(View.GONE);
+        if (loading != null) loading.setVisibility(View.GONE);
         userBox.setVisibility(View.VISIBLE);
         passwordBox.setVisibility(View.VISIBLE);
         loginButton.setVisibility(View.VISIBLE);

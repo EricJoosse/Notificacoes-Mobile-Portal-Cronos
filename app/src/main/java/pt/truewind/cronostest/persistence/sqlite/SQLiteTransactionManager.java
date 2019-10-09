@@ -18,15 +18,15 @@ public class SQLiteTransactionManager extends TransactionManager {
 
     @Override
     public <T> T doInTransaction(final TransactionCallback<T> transactionCallback) {
-        this.dbHelper.begin();
+        if (this.dbHelper != null) this.dbHelper.begin();
         try {
             T value = transactionCallback.execute();
 
-            this.dbHelper.commit();
+            if (this.dbHelper != null) this.dbHelper.commit();
 
             return value;
         } catch (Throwable t) {
-            this.dbHelper.rollback();
+            if (this.dbHelper != null) this.dbHelper.rollback();
             throw new IllegalStateException(t);
         }
     }

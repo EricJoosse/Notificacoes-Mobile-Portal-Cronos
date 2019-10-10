@@ -38,16 +38,14 @@ public class CronosWebView extends WebView {
         // para decidir o tipo de teclado automaticamente.
         // Outra coisa, foi testado que <input type="tel"/> não adiantou para exibir um teclado
         // com apenas números inteiros sem decimais, pois Android 7.0 nostrou um ponto (.) no teclado...
-        // Isso deve ser confirmado novamente, pois PRIMEIRO tem a seguinte dúvida: se apertar nas teclas
-        // "Próximo campo" ou "Campo anterior", Android ajusta automaticamente o tipo de teclado
-        // de alfanumérico para numérico e de volta, dependendo do tipo de campo????
-        // => testar isso primeiro!
+        // Se apertar nas teclas "Próximo campo" ou "Campo anterior", Android ajusta automaticamente
+        // o tipo de teclado de alfanumérico para numérico e de volta.
      // outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;
 
 
         // Para resolver o bug que o botão "Próximo campo" não aparece no teclado em alguns casos:
         // (veja https://stackoverflow.com/questions/16686681/soft-keyboard-in-webview-no-next-button-to-tab-between-input-fields)
-        if (outAttrs != null) {
+     // if (outAttrs != null) {
 //         // Remover outros botões que não se aplicam nas telas exibidas dentro do WebView para liberar espaço no teclado:
 //            outAttrs.imeOptions &= ~EditorInfo.IME_ACTION_GO;
 //            outAttrs.imeOptions &= ~EditorInfo.IME_ACTION_SEARCH;
@@ -66,9 +64,9 @@ public class CronosWebView extends WebView {
             //    	- A tecla habilitada no teclado numérico serve para voltar para o
             //        campo anterior e não para fechar o teclado, ou seja, o botão que fecha o teclado não apareceu;
 
-            Logger.d(this.getContext(), "CronosWebView: outAttrs.inputType = " + Integer.toString(outAttrs.inputType));
-            Logger.d(this.getContext(), "CronosWebView: outAttrs.imeOptions = " + Integer.toString(outAttrs.imeOptions));
-        }
+         // Logger.d(this.getContext(), "CronosWebView: outAttrs.inputType = " + Integer.toString(outAttrs.inputType));
+         // Logger.d(this.getContext(), "CronosWebView: outAttrs.imeOptions = " + Integer.toString(outAttrs.imeOptions));
+     // }
 
         return ic;
     }
